@@ -1,0 +1,98 @@
+%----------------------------------------------------------
+%
+\documentclass{beamer}%
+
+\mode<presentation> {
+  \usetheme{CambridgeUS}
+  \usefonttheme[onlymath]{serif}
+  \setbeamercovered{transparent}
+}
+
+\usepackage{hyperref}
+\usepackage{minted}
+%\usepackage{utf-8}
+
+\graphicspath{{figures/}}
+
+\logo{\resizebox{10mm}{!}{\includegraphics{fer_logo.jpg}}}
+%------------------------------------------------------------------
+
+%%% --------------------------------------------------------------
+\title[git basics]
+{LARICS git tutorial: basics}
+
+\author[Miklic]{Damjan Miklic}
+
+\institute[LARICS]{LARICS Lab\\FER, University of Zagreb}
+
+\date[]{May 2016}
+
+%\AtBeginSection[]
+%{
+%  \begin{frame}<beamer>{Outline}
+%    \tableofcontents[currentsection]
+%  \end{frame}
+%}
+
+\begin{document}
+
+% ================================================================
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+% ----------------------------------------------------------------
+
+\section*{Outline}
+\begin {frame}
+	\tableofcontents
+\end{frame}
+
+
+% =============================================================================
+
+% TODO: add "before we begin" section with instructions on setting up SSH keys for GitHub
+
+% =============================================================================
+
+\input{basicbasics.tex}
+
+% =============================================================================
+
+\input{branches.tex}
+
+% =============================================================================
+
+\section{Where to go from here?}
+
+\begin{frame}
+	\frametitle{Useful links}
+	
+	\begin{itemize}
+		\item \href{http://stackoverflow.com/questions/tagged/git}{Stackoverflow} :)
+		\item \href{https://git-scm.com/book/en/v2}{The Pro Git book} (The git reference)
+		\item \href{http://rogerdudler.github.io/git-guide/}{git - the simple guide} (sort of an online cheatsheet)
+		\item \href{http://www-cs-students.stanford.edu/~blynn/gitmagic/}{Git Magic} (tutorial) 
+		\item \href{http://www.gitguys.com/}{Git Guys} (tutorial)
+	\end{itemize}
+	
+\end{frame}
+
+% ----------------------------------------------------------------
+
+\begin{frame}
+	\frametitle{Some advanced topics to think about}
+	
+	\begin{itemize}
+		\item More complex branching and merging scenarios
+		\item Using git on Windows
+		\item Setting up access to local git repos for other developers
+		\item git submodules
+	\end{itemize}
+	
+\end{frame}
+
+% ================================================================
+
+\end{document}
