@@ -40,17 +40,59 @@
 % -----------------------------------------------------------------------------
 
 \begin{frame}[fragile]
-	\frametitle{Getting started: cloning a repository}
+	\frametitle{A note on notation}
+	
+	Throughout the presentation, the following notation applies:
+	\begin{itemize}
+		\item Commands that you are supposed to type are displayed in \texttt{monospace font} preceeded by a \texttt{>} symbol, such as
+		\begin{minted}{console}
+		> git --help
+		\end{minted}
+		\item The \texttt{>} symbol only indicates the command prompt, don't type it in
+		\item Text that you need to modify is indicated given \texttt{<inside angle brackets>}, e.g.,
+		\begin{minted}{console}
+		> cd /home/<your username>
+		\end{minted}
+		\item Again, when typing the command, omit the brackets
+	\end{itemize}
+\end{frame}
 
-	Cloning creates a local copy of the repository (including \emph{all history})	
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+	\frametitle{Getting started: repositories, forking and cloning}
+
+	\begin{block}{Repository (repo)}
+	A repository is the main logical unit of working with git. It contains your code and its complete history. 
+	\end{block}
+
+	\begin{block}{Forking}
+	To fork a repo, simply click the \includegraphics[scale=0.35]{fork} icon in the top right corner of the repo webpage. For this tutorial, you will need to clone the \href{https://github.com/larics/git-tutorial}{larics/git-tutorial} repo.
+	\end{block}
+
+	\begin{block}{Cloning}
+	Cloning creates a local copy of the repository (including \emph{all history}).	
 	\begin{minted}{console}
-	> git clone git@github.com:larics/tutorial-git-basics
-	> cd tutorial-git-basics
+	> git clone git@github.com:<your username>/git-tutorial
+	\end{minted}
+	\end{block}
+\end{frame}
+	
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+	\frametitle{Repository structure}
+	
+	What's in a repository (besides code)?
+	
+	\begin{minted}{console}
+	> cd git-tutorial
 	> ls -la
 	\end{minted}
 	
-	The hidden \texttt{.git} folder contains all metadata.
+	The hidden \texttt{.git} folder contains repository metadata (history + internal data structures keeping track of your work).
 	
+	The \texttt{git status} command provides an overview of what is going on in your repo.
 	\begin{minted}{console}
 	> git status
 	\end{minted}
