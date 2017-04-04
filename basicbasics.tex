@@ -1,32 +1,34 @@
 \section{The basic basics}
 
 \begin{frame}
-	\frametitle{About git\footnote{\emph{git} means "unpleasant person" in British slang. Linus: "I'm an egotistical bastard, and I name all my projects after myself."}}
+
+\frametitle{About git\footnote{\emph{git} means "unpleasant person" in British slang. Linus: "I'm an egotistical bastard, and I name all my projects after myself."}}
 	
-	\begin{itemize}
-		\item A \emph{distributed} version control system (VCS) 
-		\item Developed in 2005 by Linus Torvalds to support Linux kernel development
-		\item Git was never meant to be used directly :)
-		\item Very powerful and very complex
-		\item Supports different workflows
-		\item We'll be using the GitHub workflow (more or less)	
-	\end{itemize}
+\begin{itemize}
+	\item A \emph{distributed} version control system (VCS) 
+	\item Developed in 2005 by Linus Torvalds to support Linux kernel development
+	\item Git was never meant to be used directly :)
+	\item Very powerful and very complex
+	\item Supports different workflows
+	\item We'll be using the GitHub workflow (more or less)	
+\end{itemize}
 	
 \end{frame}
 
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-	\frametitle{VCS requirements}
+
+\frametitle{VCS requirements}
 	
-	\begin{block}{Basic requirements}
+\begin{block}{Basic requirements}
 	\begin{itemize}
 		\item Keep track of changes to our code
 		\item Facilitate collaboration
 	\end{itemize}
-	\end{block}
+\end{block}
 	
-	\begin{block}{Additional requirements}
+\begin{block}{Additional requirements}
 	\begin{itemize}
 		\item Work offline
 		\item Support a distributed workflow
@@ -34,49 +36,55 @@
 		\item Cryptographic authentication of history
 		\item Efficiency
 	\end{itemize}
-	\end{block}
+\end{block}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
 
 \begin{frame}[fragile]
-	\frametitle{A note on notation}
+
+\frametitle{A note on notation}
 	
-	Throughout the presentation, the following notation applies:
-	\begin{itemize}
-		\item Commands that you are supposed to type are displayed in \texttt{monospace font} preceeded by a \texttt{>} symbol, such as
-		\begin{minted}{console}
-		> git --help
-		\end{minted}
-		\item The \texttt{>} symbol only indicates the command prompt, don't type it in
-		\item Text that you need to modify is indicated given \texttt{<inside angle brackets>}, e.g.,
-		\begin{minted}{console}
-		> cd /home/<your username>
-		\end{minted}
-		\item Again, when typing the command, omit the brackets
-	\end{itemize}
+Throughout the presentation, the following notation applies:
+
+\begin{itemize}
+	\item Commands that you are supposed to type are displayed in \texttt{monospace font} preceeded by a \texttt{>} symbol, such as
+	\begin{minted}{console}
+> git --help
+	\end{minted}
+	\item The \texttt{>} symbol only indicates the command prompt, don't type it in
+	\item Text that you need to modify is indicated given \texttt{<inside angle brackets>}, e.g.,
+	\begin{minted}{console}
+> cd /home/<your username>
+	\end{minted}
+	\item Again, when typing the command, omit the brackets
+\end{itemize}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
 
 \begin{frame}[fragile]
-	\frametitle{Getting started: repositories, forking and cloning}
 
-	\begin{block}{Repository (repo)}
+\frametitle{Getting started: repositories, forking and cloning}
+
+\begin{block}{Repository (repo)}
 	A place where your work is stored. It contains your code and its complete history. 
-	\end{block}
+\end{block}
 
-	\begin{block}{Forking}
+\begin{block}{Forking}
 	To fork a repo, simply click the \includegraphics[scale=0.35]{fork} icon in the top right corner of the repo webpage. For this tutorial, you will need to clone the \href{https://github.com/larics/git-tutorial}{larics/git-tutorial} repo.
-	\end{block}
+\end{block}
 
-	\begin{block}{Cloning}
+\begin{block}{Cloning}
 	Cloning creates a local copy of the repository (including \emph{all history}).	
 	\begin{minted}{console}
-	> git clone git@github.com:<username>/git-tutorial
+> git clone git@github.com:<username>/git-tutorial
 	\end{minted}
 	Clone only one repo per pair!
-	\end{block}
+\end{block}
+
 \end{frame}
 	
 % -----------------------------------------------------------------------------
