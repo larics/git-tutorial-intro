@@ -67,22 +67,18 @@ Throughout the presentation, the following notation applies:
 
 \begin{frame}[fragile]
 
-\frametitle{Getting started: repositories, forking and cloning}
+\frametitle{Getting started: repositories and forking}
 
 \begin{block}{Repository (repo)}
 	A place where your work is stored. It contains your code and its complete history. 
 \end{block}
 
 \begin{block}{Forking}
-	To fork a repo, simply click the \includegraphics[scale=0.35]{fork} icon in the top right corner of the repo webpage. For this tutorial, you will need to clone the \href{https://github.com/larics/git-tutorial}{larics/git-tutorial} repo.
+	To fork a repo, simply click the \includegraphics[scale=0.35]{fork} icon in the top right corner of the repo webpage. For this tutorial, you will need to clone the \href{https://github.com/larics/git-tutorial-code.git}{larics/git-tutorial-code} repo.
 \end{block}
 
-\begin{block}{Cloning}
-	Cloning creates a local copy of the repository (including \emph{all history}).	
-	\begin{minted}{console}
-> git clone git@github.com:<username>/git-tutorial
-	\end{minted}
-	Clone only one repo per pair!
+\begin{block}{Task: Add a collaborator to your repo}
+Choose one of the cloned repositories. In the GitHub user interface, on the \includegraphics[scale=0.35]{settings} tab, select the \texttt{Collaborators and teams} menu and add your partner as a collaborator with \texttt{Write} access.
 \end{block}
 
 \end{frame}
@@ -90,21 +86,29 @@ Throughout the presentation, the following notation applies:
 % -----------------------------------------------------------------------------
 
 \begin{frame}[fragile]
-	\frametitle{Repository structure}
+
+\frametitle{Cloning and repository structure}
+
+\begin{block}{Cloning}
+Cloning creates a local copy of the repository (including \emph{all history}).	
+\begin{minted}{console}
+> git clone git@github.com:<username>/git-tutorial-code.git
+\end{minted}
+\end{block}
+
+What's in a repository (besides code)?
 	
-	What's in a repository (besides code)?
+\begin{minted}{console}
+> cd git-tutorial
+> ls -la
+\end{minted}
 	
-	\begin{minted}{console}
-	> cd git-tutorial
-	> ls -la
-	\end{minted}
+The hidden \texttt{.git} folder contains repository metadata (history + internal data structures keeping track of your work).
 	
-	The hidden \texttt{.git} folder contains repository metadata (history + internal data structures keeping track of your work).
-	
-	The \texttt{git status} command provides an overview of what is going on in your repo.
-	\begin{minted}{console}
-	> git status
-	\end{minted}
+The \texttt{git status} command provides an overview of what is going on in your repo.
+\begin{minted}{console}
+> git status
+\end{minted}
 	
 \end{frame}
 
@@ -160,6 +164,25 @@ Maintainers:
 \end{frame}
 
 % -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Discarding lots of unwanted changes}
+
+If there are a lot of unwanted and uncommitted changes in your repo affecting several files, you can undo all of them at once with the \texttt{git reset} command.
+
+\begin{block}{Discarding several unwanted changes}
+Delete random files form the demo repo. Check the \texttt{status} of the repo. Do not add or commit the changes. To discard all changes at once, do:
+\begin{minted}{console}
+> git reset --hard
+\end{minted}
+
+\end{block}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
 
 \begin{frame}[fragile]
 	\frametitle{Visualizing git operation}
