@@ -1,119 +1,143 @@
 \section{Working with branches}
 
 \begin{frame}
-	\frametitle{Branches in git}
+
+\frametitle{Branches in git}
 	
-	\begin{enumerate}
-		\item Branches are used to develop features in isolation from each other
-		\item Git is specifically designed for efficient work with branches
-		\item A branch is simply a pointer to a commit
-		\item The default branch name is \alert{master}
-	\end{enumerate}	
+\begin{enumerate}
+	\item Branches are used to develop features in isolation from each other
+	\item Git is specifically designed for efficient work with branches
+	\item A branch is simply a pointer to a commit
+	\item The default branch name is \alert{master}
+\end{enumerate}	
+		
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
 	
+\frametitle{Creating a branch}
+	
+\begin{block}{When do I need a branch?}
+Generally, every time you start working on a new feature, or any significant change to your code.
+\end{block}
+	
+Creating a branch:
+\begin{minted}{console}
+> git branch <branch name>
+> git status
+\end{minted}
+	
+Listing local branches:
+\begin{minted}{console}
+> git branch -v
+\end{minted}	
+	
+Switching between branches:
+\begin{minted}{console}
+> git checkout <branch name>
+\end{minted}
+	
+% TODO: add figures!
 	
 \end{frame}
 
 % -----------------------------------------------------------------------------
 
 \begin{frame}[fragile]
-	\frametitle{Creating a branch}
+
+\frametitle{Working on a branch}
 	
-	\begin{block}{When do I need a branch?}
-	Generally, every time you start working on a new feature, or any significant change to your code.
-	\end{block}
-	
-	Creating a branch:
-	\begin{minted}{console}
-	> git branch <yourname>-devel
-	\end{minted}
-	
-	Listing local branches:
-	\begin{minted}{console}
-	> git branch -v
-	\end{minted}	
-	
-	Switching between branches:
-	\begin{minted}{console}
-	> git checkout <yourname>-devel
-	\end{minted}
-	
-	% TODO: add figures!
-	
+Switching back and forth between branches changes the files on your disk!
+
+\begin{block}{Task: Bugfix on a local branch}
+There is a bug in the \texttt{fact} function of the demo shell program. Create a new branch (give it a descriptive name) and check it out. Fix the bug. Commit.
+\end{block}	
+
+By default, branches are visible only locally. To make them visible at the origin, they must be pushed:
+\begin{minted}{console}
+> git push -u origin <branch name>
+\end{minted}
+
+\begin{block}{Task: New feature on a remote branch}
+Implement a \texttt{square} command for the demo shell program, which computes the square of the provided argument. Create a new branch and check it out. Implement the feature. Commit. Push the branch to origin.
+\end{block}	
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
 
 \begin{frame}[fragile]
-	\frametitle{Working on a branch}
+
+\frametitle{Merging branches locally}
+
+After you are finished working on the bugfix, it's time to merge it back into the master branch.
+\begin{minted}{console}
+> git checkout master
+> git merge <branch name>
+\end{minted}
+
+After you are done with the bugfix branch, clean up after yourself by deleting it.
+\begin{minted}{console}
+> git branch -d <branch name>
+\end{minted}
 	
-	\begin{block}{Task}
-	Edit some files. Create some files. Commit your work.
-	\end{block}	
-	
-	Switching back and forth between branches changes the files on your disk!
-	
-	After you are finished working on the new feature, it's time to merge it back into the master branch.
-	\begin{minted}{console}
-	> git checkout master
-	> git merge <yourname>-devel
-	> git branch -d <yourname>-devel
-	\end{minted}
-	It's very good practice to clean up after yourself and delete unused branches.
-	
-	Merge conflicts are handled in the same way as discussed before.
+Merge conflicts are handled in the same way as discussed before. Remote branches at origin are also just branches, so we have been working with branches all along :) 
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
 
 \begin{frame}[fragile]
-	\frametitle{Remote branches}
 	
-	\begin{block}{Task}
-	Create a new branch named \texttt{<yourname>-remtest} and switch to it. Make some changes.
-	\end{block}	
+\frametitle{Pull requests}
+	
+\begin{block}{Task: Pull request}
+Look for your branch in the web interface of the GitHub repo. Create a pull request for your branch. Have your partner review and merge the pull request. Delete the branch after it has been merged.
+\end{block}	
 
-	We need to explicitly push the local branch to the remote repository:
-	\begin{minted}{console}
-	> git push -u origin <yourname>-remtest
-	\end{minted}	
-	
+\begin{block}{Code review}
+
+Pull requests are an efficient and transparent code review mechanism. Code review is good. Pull requests are good. Use pull requests :)
+\end{block}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
 
 \begin{frame}[fragile]
-	\frametitle{Pull requests}
 	
-	\begin{block}{Task}
-	Look for your branch in the web interface of the GitHub repo. Create a pull request for your branch. Have your partner review and merge the pull request. Delete the branch after it has been merged.
-	\end{block}	
+\frametitle{Working with multiple remotes}
+	
+\begin{block}{Why would I need multiple remotes?}
+We can get code changes from any repo, not just the one we originally cloned (which is called \texttt{origin}). A typical example is getting changes from the \texttt{upstream} repo, i.e., the repo that we forked.
+\end{block}	
 
-	\begin{block}{Code review}
-	Pull requests are an efficient and transparent code review mechanism. Code review is good. Pull requests are good. Use pull requests :)
-	\end{block}
+Listing and adding remotes:
+\begin{minted}{console}
+> git remote add <alias> git@<hostname>:<path to repo>	
+> git remote -v	
+\end{minted}
+	
+We can now work with the new remote in the same way as with origin (except for pushing!), e.g.:
+\begin{minted}{console}
+> git fetch <alias>
+> git merge <alias>/<branch>
+\end{minted}
+	
 \end{frame}
 
 % -----------------------------------------------------------------------------
 
-\begin{frame}[fragile]
-	\frametitle{Working with multiple remotes}
-	
-	\begin{block}{Why would I need multiple remotes?}
-	Multiple remotes allow us to get code changes directly from other developers, without going through the "main" server. A typical use-case is when working in the field, with no internet access. All that is required is an ssh connection to the other machine (e.g. via ad-hoc networking) and a git user with appropriate permissions set up on that machine. 
-	\end{block}	
+\begin{frame}
 
-	Listing and adding remotes:
-	\begin{minted}{console}
-	> git remote add <alias> git@<hostname>:<path to repo>	
-	> git remote -v	
-	\end{minted}
-	
-	We can now work with the new remote in the same way as with origin (except for pushing!), e.g.:
-	\begin{minted}{console}
-	> git fetch <alias>
-	> git merge <alias>/<branch>
-	\end{minted}
-	
+\frametitle{Merging upstream changes}
+
+\begin{block}{Task: Merge upstream changes}
+Create a remote called \texttt{upstream} pointing to \href{https://github.com/larics/git-tutorial-code.git}{the original repo you forked}. \texttt{fetch} the \texttt{upstream} repo and compare its \texttt{master} branch with your \texttt{master} branch. Merge the \texttt{upstream} \texttt{master} into your \texttt{master}.
+\end{block}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
