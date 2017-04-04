@@ -63,7 +63,7 @@
 	\frametitle{Getting started: repositories, forking and cloning}
 
 	\begin{block}{Repository (repo)}
-	A repository is the main logical unit of working with git. It contains your code and its complete history. 
+	A place where your work is stored. It contains your code and its complete history. 
 	\end{block}
 
 	\begin{block}{Forking}
@@ -73,8 +73,9 @@
 	\begin{block}{Cloning}
 	Cloning creates a local copy of the repository (including \emph{all history}).	
 	\begin{minted}{console}
-	> git clone git@github.com:<your username>/git-tutorial
+	> git clone git@github.com:<username>/git-tutorial
 	\end{minted}
+	Clone only one repo per pair!
 	\end{block}
 \end{frame}
 	
@@ -105,22 +106,35 @@
 	\frametitle{Changing files and committing your changes}
 	
 	\begin{block}{Task}
-	Open the file with your (nick)name, add your full name to the file and save the changes.
+	Open the \texttt{README.md} file and add the following lines, then save the file:
+	\begin{minted}{console}
+Maintainers:
+  <your name>
+	\end{minted}
 	\end{block}
+	
 	\begin{minted}{console}
 	> git status
 	> git diff
-	> git commit -am "Added my full name"
+	> git add README.md
+	> git commit -m "Add maintainer."
 	> git status
 	\end{minted}
-	
-	\begin{block}{The \texttt{-am} options}
-	\begin{itemize}
-		\item \texttt{a}: You (almost) always want to use this option :)
-		\item \texttt{m}: Lets you specify a commit message. \alert{Use commit messages!}
-	\end{itemize}
+
+	\begin{block}{Task}
+	Use the \texttt{gitg} command to open a GUI and visualize your repo. A similar tool is available on GitHub repository, under the Graphs->Network menu.
 	\end{block}
 	
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+	\frametitle{Visualizing git operation}
+	
+	\begin{figure}
+		\includegraphics[scale=0.4]{git-transport}
+	\end{figure}
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -136,19 +150,6 @@
 	> git push origin master
 	\end{minted}
 	
-	\begin{block}{Task}
-	In the GitHub repository, go to Graphs->Network to visualize the commits.
-	\end{block}
-\end{frame}
-
-% -----------------------------------------------------------------------------
-
-\begin{frame}[fragile]
-	\frametitle{Visualizing git operation}
-	
-	\begin{figure}
-		\includegraphics[scale=0.4]{git-transport}
-	\end{figure}
 \end{frame}
 
 % -----------------------------------------------------------------------------
