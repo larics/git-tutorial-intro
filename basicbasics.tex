@@ -183,7 +183,8 @@ Run the following, and observe what is happening.
 	\end{itemize}
 	\item \texttt{git commit} your changes
 	\begin{itemize}
-	\item  "50/72" rule - the subject of the commit description should be {\raise.17ex\hbox{$\scriptstyle\sim$}}50 characters, the body should be wrapped to 72 characters
+	\item  "50/72" rule - the title of the commit description should be {\raise.17ex\hbox{$\scriptstyle\sim$}}50 characters, the body should be wrapped to 72 characters
+	\item Use the imperative form as the first word in the title -- e.g. \\"Add prime checking", "Implement saving to file", "Fix broken build"
 	\end{itemize}
 \end{enumerate}
 	
@@ -257,22 +258,72 @@ Delete several files from the cloned example repository. Check the output of \te
 
 \frametitle{Going back in time}
 
-The point of using a version control system such as git is the ability to retrieve older versions of files in the project. One way of doing this is illustrated here.
+The point of using a version control system such as git is the ability to retrieve older versions of files in the project.
 
 	\begin{block}{Task}
 	Delete a big chunk of text from \texttt{cpp/CMakeLists.txt}. Commit.
 	\end{block}
 	
-	Git allows you to retrieve the version of a file from an earlier commit\footnote{writing good commit messages is important, because it will make identifying \\the right commit much easier}:
+	Git allows you to retrieve another version of a file from an earlier commit.\footnote{writing good commit messages is important, because it will make identifying \\the right commit much easier} To identify the desired commit, use the \texttt{gitg} tool, or run \texttt{git log} (add \texttt{--oneline} for an abbreviated list of commits). Then, run:
 	\begin{minted}{console}
-> git log --oneline
-> git checkout <commit> <file>
+> git checkout <commit ID> <file>
 	\end{minted}
 	Git will place the checked out version of the file in the working tree, and will also stage the changes for you.
-	% TODO: find out how to discard the change that has been made by the checkout
 \end{frame}
 
 % -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Reverting previous commits}
+
+Another benefit of splitting the work in different commits is the ability to undo them using \texttt{git revert}.
+
+	\begin{block}{Task}
+	Discard the earlier version of the file \texttt{cpp/CMakeLists.txt} that you have just checked out:
+	\begin{minted}{console}
+> git reset --hard
+	\end{minted}
+
+	Revert the offending commit:
+	\begin{minted}{console}
+> git revert <commit ID>
+	\end{minted}
+
+Reverting generates an \textit{inverse commit}, which has the exactly opposite set of changes.
+	\end{block}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Amending the last commit}
+
+In the special case when you want to add aditional changes to the \textit{last commit} that you have made, \textbf{and if you have not yet pushed that commit}:
+
+	\begin{enumerate}
+	\item Stage the additional changes using \texttt{git add}
+	\item Inspect the changes, as previously described
+	\item Run \texttt{git commit --amend}
+	\end{enumerate}
+
+In case you only wish to amend the commit description, just run \texttt{git commit --amend}, without staging any changes.
+
+	\begin{block}{Task}
+	Amend the description of the revert commit that you have just made:
+	\begin{minted}{text}
+Undo the destructive changes that the cat has commited by
+walking on the keyboard.
+	\end{minted}
+\end{block}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+
 
 \begin{frame}[fragile]
 	\frametitle{Visualizing git operation}
@@ -288,17 +339,17 @@ The point of using a version control system such as git is the ability to retrie
 	\frametitle{Pushing the changes to the remote repository}
 	
 	\begin{block}{Local vs. remote changes}
-	\texttt{commit} only saves changes \alert{locally}! The command \texttt{git push} is used to upload the commits to the remote repository. 
+	\texttt{commit} only saves changes \alert{locally}! The command \texttt{git push} is used to upload the commits you have made to a remote repository. 
 	
 	\begin{minted}{console}
 > git push origin master
 	\end{minted}
 	\end{block}
 
-Note that you can simply call \texttt{git push} if you have set up your local branch to be a tracking branch (which will be explained later; in most cases, git will have automatically configured this for you).
+Note that you can simply call \texttt{git push} if you have set up your local branch to be a tracking branch (which will be explained later; in most cases, git will already have automatically configured this for you).
 
 	\begin{block}{Collaboration issues}
-What happens when somebody else pushed changes to the remote repo before us? Git refuses to push to a changed repo, we must synchronize our local copy first!
+What happens when somebody else pushed changes to the remote repository before us? In this case, git refuses to push. We must synchronize our local repository first!
 	\end{block}	
 	
 \end{frame}
@@ -336,7 +387,7 @@ What happens when somebody else pushed changes to the remote repo before us? Git
 \begin{frame}[fragile]
 	\frametitle{Dealing with conflicts: merging}
 	
-	Merging adds a commit to your local branch which has two parents: your local 
+	When you call \texttt{merge}, git adds a special merge commit to your local repository, which has two parent commits: your local previous head commit, and the other side's commit (in this case, the \textit{other side} is the same branch in the remote repository).
 	\begin{minted}{console}
 > git merge origin/master
 	\end{minted}
