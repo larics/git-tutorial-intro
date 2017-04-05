@@ -412,13 +412,13 @@ What happens when somebody else pushed changes to the remote repository before u
 	Conflict markers inside the file:
 	\begin{minted}{diff}
 <<<<<<< HEAD
-Code on working branch before the merge
+Code from the checked out branch ("local" in git gui) 
 =======
-Code introduced by the merge
+Code from the other branch ("remote" in git gui)
 >>>>>>> origin/master
 	\end{minted}
 
-	To resolve the conflict, manually edit the file, mark resolution by \texttt{git add}, commit and push:
+	To resolve the conflict, manually edit the file, mark resolution with \texttt{git add}, commit and push:
 	\begin{minted}{console}
 > git add <file name>
 > git commit
@@ -429,27 +429,9 @@ Code introduced by the merge
 
 % -----------------------------------------------------------------------------
 
-\begin{frame}[fragile]
-	\frametitle{Handling binary files}
-	
-	\begin{block}{Difference between text and binary files}
-	Changes to text files are stored incrementally, as diffs, which is very space-efficient. For every change in a binary file, the whole file is stored again. The change persists, even after the file is removed!
-	\end{block}
-	
-	\begin{block}{How to handle binary files}
-	Storing binary files (e.g. graphics) is ok if they are small and change infrequently. Otherwise, create a README file with instructions for downloading the files (or a download script, if you want to be fancy).
-	\end{block}
-	
-	\begin{block}{Build output}
-	\alert{Never} commit build output (even if it is text, e.g. documentation)! It can waste \alert{huge} amounts of space and it will create unnecessary conflicts.
-	\end{block}
-\end{frame}
-
-% -----------------------------------------------------------------------------
-
 \begin{frame}
 
-\frametitle{Visualizing your repo}
+\frametitle{Visualizing your repository}
 
 \begin{itemize}
 	\item The \texttt{gitg} tool can visualize your repository
@@ -457,8 +439,43 @@ Code introduced by the merge
 \end{itemize}
 
 \begin{block}{Task}
-	Visualize your repo with \texttt{gitg} and on GitHub. Notice how the repo history is not linear. 
+	Visualize your repo with \texttt{gitg} and on GitHub. Notice how the history is not linear. 
 \end{block}
 
 \end{frame}
+
 % -----------------------------------------------------------------------------
+
+\begin{frame}
+	\frametitle{Binary files}
+	
+	\begin{block}{Difference between text and binary files}
+	\begin{itemize}
+	\item Changes to files are stored incrementally, as commit diffs, which is very space-efficient for text-files.
+    \item For binary files, most of the time, the majority of the file is changed (e.g. when you edit a picture, or recompile an executable), which effectively means that the commit \textbf{contains a complete copy of the new version}.
+    \begin{itemize}
+    \item The old version \textbf{still persists} in the old commits, \textbf{even if you remove the file}, because git keeps the whole history.
+    \end{itemize}
+    \end{itemize}
+	\end{block}
+	
+	\begin{block}{How to handle binary files}
+	Storing binary files (e.g. graphics) is acceptable if they are small and change infrequently. Otherwise, create a README file with instructions for downloading the files, or a script which downloads them into place.
+	\end{block}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+	\frametitle{Binary files - build output}
+	
+	\begin{block}{Build output}
+	\begin{itemize}
+	\item \alert{Never} commit build output (even if it is text, e.g. documentation)! It can waste \alert{huge} amounts of space and it will create unnecessary conflicts
+	\item Add the appropriate entries to \texttt{.gitignore} so that git ignores \\ the build output
+	\begin{itemize}
+	\item This will also keep \texttt{git gui} and the output of \texttt{git status}\\ free from clutter related to build files
+	\end{itemize}
+	\end{itemize}
+	\end{block}
+\end{frame}
