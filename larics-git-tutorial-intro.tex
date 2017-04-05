@@ -14,26 +14,37 @@
 \usepackage{minted}
 %\usepackage{utf-8}
 
-\setbeamertemplate{itemize item}{\raisebox{0.25ex}{\small\textbullet}\hskip0.1em}
-\setbeamertemplate{itemize subitem}{\raisebox{0.25ex}{\scriptsize\textbullet}\hskip0.1em}
+\setbeamertemplate{itemize item}{\raisebox{0.25ex}{\small\textbullet}}
+\setbeamertemplate{itemize subitem}{\raisebox{0.25ex}{\scriptsize\textbullet}}
 \graphicspath{{figures/}}
 \logo{\resizebox{10mm}{!}{\includegraphics{fer_logo.jpg}}}
 \setbeamersize{text margin left=15pt, text margin right=20pt} 
-\setlength{\leftmarginii}{11pt}
+\setlength{\leftmarginii}{10pt}
 \setbeamertemplate{enumerate item}{
-  \hbox{%
-    \usebeamerfont*{item projected}%
-    \usebeamercolor[bg]{item projected}%
-    \raisebox{2pt}{%
-    \vrule width3ex height2.25ex depth.8ex%
-    \hskip-4ex%
-    \hbox to5ex{%
-      \hfil%
-      \color{fg}\insertenumlabel%
-      \hfil}%
-  }%
-}%
+    \raisebox{-1.7pt}{\scalebox{2.1}{\textbullet}\hskip-14.3pt}
+    \hbox to2ex{%
+      \hfil
+      \usebeamercolor[bg]{item projected}
+      \color{fg}
+      \raisebox{1.7pt}{\scalebox{0.65}{\insertenumlabel}}%
+      \hfil}
+    \hskip-5pt%
 }
+\setbeamertemplate{section in toc}{
+  \leavevmode\leftskip=3ex%
+  \llap{%
+    \usebeamerfont*{section number projected}%
+    \usebeamercolor{section number projected}%
+    \begin{pgfpicture}{-1ex}{-0.3ex}{1ex}{2ex}
+      \color{bg}
+      \pgfpathcircle{\pgfpoint{0pt}{.75ex}}{1.7ex}
+      \pgfusepath{fill}
+      \pgftext[base]{\color{fg}\inserttocsectionnumber}
+    \end{pgfpicture}\kern2.25ex%
+  }%
+  \inserttocsection\par}
+\setbeamertemplate{subsection in toc}
+  {\leavevmode\leftskip=2em$\bullet$\hskip1em\inserttocsubsection\par}
 
 %------------------------------------------------------------------
 
