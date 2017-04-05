@@ -1,6 +1,6 @@
 %----------------------------------------------------------
 %
-\documentclass{beamer}%
+\documentclass[xcolor=dvipsnames]{beamer}%
 
 \mode<presentation> {
   \usetheme{CambridgeUS}
@@ -9,12 +9,32 @@
 }
 
 \usepackage{hyperref}
+
+\hypersetup{colorlinks,linkcolor=,urlcolor=blue}
 \usepackage{minted}
 %\usepackage{utf-8}
 
+\setbeamertemplate{itemize item}{\raisebox{0.25ex}{\small\textbullet}\hskip0.1em}
+\setbeamertemplate{itemize subitem}{\raisebox{0.25ex}{\scriptsize\textbullet}\hskip0.1em}
 \graphicspath{{figures/}}
-
 \logo{\resizebox{10mm}{!}{\includegraphics{fer_logo.jpg}}}
+\setbeamersize{text margin left=15pt, text margin right=20pt} 
+\setlength{\leftmarginii}{11pt}
+\setbeamertemplate{enumerate item}{
+  \hbox{%
+    \usebeamerfont*{item projected}%
+    \usebeamercolor[bg]{item projected}%
+    \raisebox{2pt}{%
+    \vrule width3ex height2.25ex depth.8ex%
+    \hskip-4ex%
+    \hbox to5ex{%
+      \hfil%
+      \color{fg}\insertenumlabel%
+      \hfil}%
+  }%
+}%
+}
+
 %------------------------------------------------------------------
 
 %%% --------------------------------------------------------------
@@ -35,7 +55,6 @@
 %}
 
 \begin{document}
-
 % ================================================================
 
 \begin{frame}
@@ -43,7 +62,6 @@
 \end{frame}
 
 % ----------------------------------------------------------------
-
 \section*{Outline}
 \begin {frame}
 	\tableofcontents

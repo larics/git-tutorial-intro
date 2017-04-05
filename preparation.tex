@@ -2,28 +2,50 @@
 
 \begin{frame}[fragile]
 
+\frametitle{A note on notation}
+	
+Throughout the presentation, the following notation applies:
+
+\begin{itemize}
+	\item Commands that you are supposed to type are displayed in \texttt{monospace font} preceded by a \texttt{>} symbol, such as
+	\begin{minted}{console}
+> git --help
+	\end{minted}
+	\item The \texttt{>} symbol only indicates the command prompt.\\ \textit{Do not} type it in.
+	\item When the command is too long to fit on one line, the line break will be marked with a backslash (\textbackslash), which you do not need to type.
+	\item Text that you need to replace is given \texttt{<inside angle brackets>}, e.g.,
+	\begin{minted}{console}
+> cd /home/<your username>
+	\end{minted}
+	When typing the command with your replaced text,\\omit the brackets.
+\end{itemize}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
 \frametitle{Preparing for the tutorial}
 	
-To follow the tutorial, you will need to:
 \begin{itemize}
-	\item  Open a \href{https://github.com/join?source=header-home}{GitHub account}
-	\item Set up an SSH key accordig to \href{https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/}{these instructions}
+	\item  Open a \href{https://github.com/join?source=header-home}{GitHub account} and set up an SSH key for passwordless login according to \href{https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/}{these instructions}
 	\item Install the git command-line client and GUI tools
 	\begin{minted}{console}
 > sudo apt install git git-gui gitg
 	\end{minted}
-	\item Configure the command-line client
+	\item Tell git who you are, and which editor to use:
 	\begin{minted}{console}
-> git config --global user.name "Your Name"
-> git config --global user.email youremail@fer.hr
+> git config --global user.name "<Your Name>"
+> git config --global user.email <youremail@fer.hr>
 > git config --global core.editor \
-"gedit --wait --new-window"
+  "gedit --wait --new-window"
+	\end{minted}
+	\item The code example in the exercise will be available in C++ and Python. If you will be using C++, install the build tools:
+	\begin{minted}{console}
+> sudo apt install build-essential cmake
 	\end{minted}
 \end{itemize}
-	
-\begin{block}{What's the SSH thing all about?}
-	In short, it will allow you to communicate with the GitHub server without typing your GitHub password every time.
-\end{block}
 
 \end{frame}
 
