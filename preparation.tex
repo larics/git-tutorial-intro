@@ -30,6 +30,7 @@ Throughout the presentation, the following notation applies:
 	
 \begin{itemize}
 	\item  Open a \href{https://github.com/join?source=header-home}{GitHub account} and set up an SSH key for passwordless login according to \href{https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/}{these instructions}
+	\item Install the \href{https://atom.io/}{Atom} text editor
 	\item Install the git command-line client and GUI tools
 	\begin{minted}{console}
 > sudo apt install git git-gui gitg
@@ -38,8 +39,7 @@ Throughout the presentation, the following notation applies:
 	\begin{minted}{console}
 > git config --global user.name "<Your Name>"
 > git config --global user.email <youremail@fer.hr>
-> git config --global core.editor \
-  "gedit --wait --new-window"
+> git config --global core.editor "atom --wait"
 	\end{minted}
 	\item The code example in the exercise will be available in C++ and Python. If you will be using C++, install the build tools:
 	\begin{minted}{console}
