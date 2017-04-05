@@ -162,6 +162,17 @@ Run the following, and observe what is happening.
 % -----------------------------------------------------------------------------
 
 \begin{frame}[fragile]
+	\frametitle{Visualizing git operation}
+	
+	\begin{figure}
+		\includegraphics[scale=0.4]{git-transport}
+	\end{figure}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+
+\begin{frame}[fragile]
 
 \frametitle{Making a commit - recap}
 	
@@ -269,6 +280,11 @@ The point of using a version control system such as git is the ability to retrie
 > git checkout <commit ID> <file>
 	\end{minted}
 	Git will place the checked out version of the file in the working tree, and will also stage the changes for you.
+	
+	\begin{block}{Task}
+	Checkout the earlier, intact version of the file, and commit.
+	\end{block}	
+	
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -323,23 +339,11 @@ walking on the keyboard.
 
 % -----------------------------------------------------------------------------
 
-
-
-\begin{frame}[fragile]
-	\frametitle{Visualizing git operation}
-	
-	\begin{figure}
-		\includegraphics[scale=0.4]{git-transport}
-	\end{figure}
-\end{frame}
-
-% -----------------------------------------------------------------------------
-
 \begin{frame}[fragile]
 	\frametitle{Pushing the changes to the remote repository}
 	
 	\begin{block}{Local vs. remote changes}
-	\texttt{commit} only saves changes \alert{locally}! The command \texttt{git push} is used to upload the commits you have made to a remote repository. 
+	\texttt{commit} only saves changes \alert{locally}! The command \texttt{git push} is used to upload the commits you have made to a branch in a remote repository (also known as just \textit{remote}). In this case, the \texttt{master} branch on the \texttt{origin} remote:
 	
 	\begin{minted}{console}
 > git push origin master
@@ -367,7 +371,7 @@ What happens when somebody else pushed changes to the remote repository before u
 	Getting changes is a two-step process:
 	\begin{enumerate}
 		\item \texttt{fetch} the changes from the remote repository
-		\item \texttt{merge} the changes into your working tree
+		\item \texttt{merge} the changes into your local branch
 	\end{enumerate}
 	
 	\begin{minted}{console}
@@ -439,7 +443,7 @@ Code from the other branch ("remote" in git gui)
 \end{itemize}
 
 \begin{block}{Task}
-	Visualize your repo with \texttt{gitg} and on GitHub. Notice how the history is not linear. 
+	Visualize your repository with \texttt{gitg} and on GitHub. Notice how the history is not linear. 
 \end{block}
 
 \end{frame}

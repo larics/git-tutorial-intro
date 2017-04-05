@@ -12,6 +12,7 @@
 
 \hypersetup{colorlinks,linkcolor=,urlcolor=blue}
 \usepackage{minted}
+\usepackage{multicol}
 %\usepackage{utf-8}
 
 \setbeamertemplate{itemize item}{\raisebox{0.25ex}{\small\textbullet}}
@@ -97,9 +98,15 @@
 
 \begin{frame}[fragile]
 
-\frametitle{Further reading and useful links}
+\frametitle{Tips, further reading and useful links}
+
+	\begin{itemize}	
+	\item Install zsh and \href{http://ohmyz.sh/}{oh-my-zsh}, which provide awesome tab completion for git (branch names, commit IDs, git command options...)
+	\item When you have mastered the merge workflow from this presentation, read up on the rebase workflow described at the \href{http://larics.fer.hr/farm/laricswiki/doku.php?id=software:git}{LARICS git tutorial}, which enables you to produce much cleaner and linear commit history with fewer merges
+	\end{itemize}
 	
-\begin{itemize}
+Some additional literature:
+	\begin{itemize}
 	\item Every git command supports the \texttt{--help} option, e.g.,
 	\begin{minted}{console}
 > git help
@@ -117,14 +124,17 @@
 % ----------------------------------------------------------------
 
 \begin{frame}
-	\frametitle{Some advanced topics to think about}
+	\frametitle{Some other topics to think about}
 	
 	\begin{itemize}
-		\item The rebase workflow
 		\item Using git on Windows
 		\item Setting up access to local git repos for other developers
 		\item git submodules
 	\end{itemize}
+
+	If you have any questions, feel free to send an email to 
+	\href{mailto:damjan.miklic@fer.hr}{damjan.miklic@fer.hr} or
+	\href{mailto:juraj.orsulic@fer.hr}{juraj.orsulic@fer.hr}, or visit us in C-XI-16!
 	
 \end{frame}
 
