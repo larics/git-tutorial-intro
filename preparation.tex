@@ -12,12 +12,12 @@ Throughout the presentation, the following notation applies:
 > git --help
 	\end{minted}
 	\item The \texttt{>} symbol only indicates the command prompt.\\ \textit{Do not} type it in.
-	\item When the command is too long to fit on one line, the line break will be marked with a backslash (\textbackslash), which you do not need to type.
-	\item Text that you need to replace is given \texttt{<inside angle brackets>}, e.g.,
+	\item When the command is too long to fit in one line, the line break will be escaped with a backslash (\textbackslash). You do not need to type in the backslash and the line break.
+	\item The text that you need to replace is given \texttt{<inside angle brackets>}, e.g.,
 	\begin{minted}{console}
 > cd /home/<your username>
 	\end{minted}
-	When typing the command with your replaced text,\\omit the brackets.
+	When typing in the command with your replaced text, omit \\the brackets.
 \end{itemize}
 
 \end{frame}
@@ -29,7 +29,7 @@ Throughout the presentation, the following notation applies:
 \frametitle{Preparing for the tutorial}
 	
 \begin{itemize}
-	\item  Open a \href{https://github.com/join?source=header-home}{GitHub account} and set up an SSH key for passwordless login according to \href{https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/}{these instructions}
+	\item  Open a \href{https://github.com/join?source=header-home}{GitHub account} and set up an SSH key for passwordless login according to \href{https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/}{these instructions on Github}
 	\item Install the git command-line client and GUI tools
 	\begin{minted}{console}
 > sudo apt install git git-gui gitg
@@ -58,6 +58,7 @@ Throughout the presentation, the following notation applies:
 \begin{itemize}
 	\item Work in pairs
 	\item Pair up with someone using the same programming language (C++ or Python)
+	\item When assigning tasks and describing how you will interact with each other through git, we will refer to you, the members of a pair, as \textit{Mirko} and \textit{Slavko}. Make an agreement about who will assume each role.
 \end{itemize}
 	
 \end{frame}

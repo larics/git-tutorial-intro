@@ -2,40 +2,60 @@
 
 \begin{frame}
 
-\frametitle{About git\footnote{\emph{git} means "unpleasant person" in British slang. Linus: "I'm an egotistical\\bastard, and I name all my projects after myself."}}
+\frametitle{Version control system}
 	
-\begin{itemize}
-	\item A \emph{distributed} version control system (VCS) 
-	\item Developed in 2005 by Linus Torvalds (in a single weekend!) to support Linux kernel development
-	\item Git was never meant to be used directly :)
-	\item Very powerful and very complex
-	\item Supports different workflows
-	\item We'll be using the GitHub workflow (more or less)	
-\end{itemize}
-	
-\end{frame}
-
-% -----------------------------------------------------------------------------
-
-\begin{frame}
-
-\frametitle{VCS requirements}
-	
-\begin{block}{Basic requirements}
 	\begin{itemize}
-		\item Keep track of changes to our code
-		\item Facilitate collaboration
+	\item \emph{VCS} - version control system
+	\end{itemize}
+	
+\begin{block}{Basic features}
+	\begin{itemize}
+		\item Keeps track of changes to our code
+		\item Facilitates collaboration in software and documentation development
 	\end{itemize}
 \end{block}
 	
 \begin{block}{Additional requirements}
 	\begin{itemize}
 		\item Work offline
-		\item Support a distributed workflow
-		\item Compatibility with existing protocol (e.g. ssh, http)
-		\item Cryptographic authentication of history
+		\item Support a distributed, decentralized workflow
+		\item Compatibility with existing protocols (e.g. ssh, http)
+		\item Data integrity protection
 		\item Efficiency
 	\end{itemize}
+\end{block}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+
+\frametitle{About git}
+	
+\begin{itemize}
+	\item Developed in 2005 by Linus Torvalds (in a single weekend!) to support Linux kernel development
+	\item Very powerful, has a reputation of being hard to learn
+	\begin{itemize}
+	\item We hope we will convince you otherwise :)
+	\end{itemize}
+	\item Supports different workflows
+	\begin{itemize}
+	\item We'll be using the GitHub workflow (more or less)	
+	\end{itemize}
+\end{itemize}
+
+\begin{block}{Meaning of the name \emph{git}}
+\small
+\emph{git} means "unpleasant person" in British slang. Linus: "I'm an egotistical bastard, and I name all my projects after myself."
+
+\medskip
+From the readme:
+	 \begin{itemize}
+	 \item "global information tracker": you're in a good mood, and it actually works for you. Angels sing, and a light suddenly fills the room.
+	 \item "g*dd*mn idiotic truckload of sh*t": when it breaks
+	 \end{itemize}
+	 
 \end{block}
 
 \end{frame}
@@ -88,14 +108,17 @@ To begin working on a project using Github, you have to create a repository. The
 
 \frametitle{Making a Github fork and adding a collaborator}
 
-
-\begin{block}{Task: Fork the example repository}
+\begin{block}{Task A [Mirko]: Fork the example repository}
 
 	To fork a repository, simply click the \includegraphics[scale=0.35]{fork} \, icon in the top right corner of the repository webpage. For this tutorial, you will need to clone the \href{https://github.com/larics/git-tutorial-code.git}{larics/git-tutorial-code} repository.
 \end{block}
 
-\begin{block}{Task: Add a collaborator to your forked repository}
+\begin{block}{Task B [Mirko]: Add a collaborator to your forked repository}
 In the GitHub user interface, on the \includegraphics[scale=0.35]{settings} \, tab of your forked repository, select the \texttt{Collaborators and teams} menu and add your partner as a collaborator with \texttt{Write} access.
+\end{block}
+
+\begin{block}{Task C [Slavko]: Accept the collaboration invitation}
+Check your mail, or the list of notifications on Github. Accept the collaboration invitation.
 \end{block}
 
 \end{frame}
@@ -104,7 +127,7 @@ In the GitHub user interface, on the \includegraphics[scale=0.35]{settings} \, t
 
 \begin{frame}[fragile]
 
-\frametitle{Cloning and repository structure}
+\frametitle{Cloning the repository}
 
 \begin{block}{Cloning}
 Cloning creates a local copy of the repository, which includes all the commits in the repository -- the whole history.
@@ -112,6 +135,19 @@ Cloning creates a local copy of the repository, which includes all the commits i
 > git clone git@github.com:<you>/git-tutorial-code.git
 \end{minted}
 \end{block}
+
+\begin{block}{Task D [Mirko, Slavko]}
+Clone Mirko's repository onto your computer.
+\end{block}
+
+	
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Repository structure}
 
 What is contained in the repository directory?
 	
@@ -124,7 +160,7 @@ What is contained in the repository directory?
 \begin{itemize}
 	\item The \textit{working tree} -- current version of files ("checked out")
 	\item The hidden \texttt{.git} folder which contains repository metadata \\ (all the commits, and the internal structures for storing them)
-	\item The \texttt{git status} command provides an overview of what is going on in your repository.
+	\item The \texttt{git status} command provides an overview of what is going on in the git repository.
 \end{itemize}
 \begin{minted}{console}
 \end{minted}
@@ -133,16 +169,26 @@ What is contained in the repository directory?
 
 % -----------------------------------------------------------------------------
 
+\begin{frame}
+	\frametitle{Visualizing git operation}
+	
+	\begin{figure}
+		\includegraphics[scale=0.4]{git-transport}
+	\end{figure}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+
 \begin{frame}[fragile]
 	\frametitle{Your first commit}
 	
-	\begin{block}{Task}
+	\begin{block}{Task E [Mirko, Slavko]}
 	Open \texttt{README.md} and add the following lines, then save the file:
 	\begin{minted}{text}
 Maintainers:
   <your name>
 	\end{minted}
-	\end{block}
 
 Run the following, and observe what is happening.
 
@@ -157,16 +203,8 @@ Run the following, and observe what is happening.
 > git log
 	\end{minted}
 	
-\end{frame}
-
-% -----------------------------------------------------------------------------
-
-\begin{frame}[fragile]
-	\frametitle{Visualizing git operation}
+	\end{block}
 	
-	\begin{figure}
-		\includegraphics[scale=0.4]{git-transport}
-	\end{figure}
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -203,23 +241,54 @@ Run the following, and observe what is happening.
 
 % -----------------------------------------------------------------------------
 
+\begin{frame}
+
+\frametitle{Managing staged changes}
+
+
+	\begin{itemize}	
+	
+	\item To get a list of staged and unstaged files, run \texttt{git status}.
+	\item To unstage all changes, run \texttt{git reset}.
+	\item To view the \textbf{unstaged} changes in the \textit{diff} format, open \texttt{git gui}, 
+	\\or run \texttt{git diff}
+
+	\item To view the \textbf{staged} changes in the \textit{diff} format, you can also use \texttt{git gui}, or you can run \texttt{git diff --cached}
+	
+	\item You can finely tune what goes into the commit by staging/unstaging individual lines using \texttt{git gui}.
+	\begin{itemize}	
+	\item The shortcut for (un)staging all changes in a file is Ctrl-U
+	\item For those who prefer the command line, you can use the \texttt{-p} switch of \texttt{git add} and \texttt{git reset}.
+	\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
 \begin{frame}[fragile]
 
-\frametitle{Making a commit - 2}
+\frametitle{Making some more commits}
 
-\begin{block}{Managing staged changes}
-	To unstage all changes, use \texttt{git reset}. You can finely tune what goes into the commit by staging/unstaging individual lines using \texttt{git gui}. (For those who prefer the command line, you can use the \texttt{-p} switch of \texttt{git add} and \texttt{git reset}).
-\end{block}
-
-\begin{block}{Task: Adding a license and \texttt{.gitignore}}
-	Add a license to the project. Create a \texttt{LICENSE.txt} file and copy the \href{https://choosealicense.com/licenses/apache-2.0/}{Apache License 2.0 text} into this file. Create a \texttt{.gitignore} file, with the following two lines:
+\begin{block}{Task F [Mirko, Slavko]: Adding a license and \texttt{.gitignore}}
+	\begin{itemize}
+	\item Add a license to the project. Create a \texttt{LICENSE.txt} file and copy the \href{https://www.apache.org/licenses/LICENSE-2.0.txt}{Apache License 2.0 text} into this file.
+	\item Create a \texttt{.gitignore} file, with the following two lines:
 	\begin{minted}{text}
 cpp/build/
 *.pyc
 	\end{minted}
-Make two separate commits, one for adding the license, and the other for adding \texttt{.gitignore}.
+	\item After modifying the files in the working tree, make two separate commits, one for the license, and the other for \texttt{.gitignore}.
+	\end{itemize}
 \end{block}
-	
+
+\begin{block}{Task G [Mirko]}
+	Open \texttt{README.md}. Under the package description (the second line), add and commit something to annoy your colleague (but keep it friendly :)). For example:
+	\begin{minted}{text}
+Developed without any help from that guy Slavko!
+	\end{minted}
+\end{block}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -227,37 +296,42 @@ Make two separate commits, one for adding the license, and the other for adding 
 \begin{frame}[fragile]
 	\frametitle{Discarding unstaged changes}
 	
-	\begin{block}{Task}
-	Delete a big chunk of text from \texttt{README.md}. Do not add or commit.
-	\end{block}
+	\begin{block}{Task H [Mirko, Slavko]}
+	\begin{itemize}
+	\item Delete a big chunk of text from \texttt{README.md}. Do not add or commit.
 	
-	To find out what is going on, use \texttt{git status}.
-	\bigskip
-	
-    Revert the changes by retrieving ("checking out") the last commited version of the file (can also be a directory) using the \texttt{checkout} command:
+	\item To find out what is going on, use \texttt{git status}.
+	\medskip	
+    \item Discard the changes by retrieving ("checking out") the last commited version of the file (can also be a directory) using the \texttt{checkout} command:
 
 	\begin{minted}{console}
 > git checkout README.md
 	\end{minted}
 	
 	Note that the checked out version will contain the staged changes.
+	\end{itemize}	
+	\end{block}
 \end{frame}
 % -----------------------------------------------------------------------------
 \begin{frame}[fragile]
 
 \frametitle{Discarding many unwanted changes}
 
-If you have made many changes in your working tree, spanning several files, you can discard all of them at once (this also includes the staged changes) with the \texttt{git reset --hard} command.
-
-\medskip
-This will restore all tracked files in the working tree to the most recently committed version (this commit is also known as the \texttt{HEAD} commit).
-
-\begin{block}{Task: Discarding several unwanted changes}
-Delete several files from the cloned example repository. Check the output of \texttt{git status}. Do not add or commit the changes. To discard all changes at once, run:
-\begin{minted}{console}
+	\begin{itemize}
+	\item If you have made many changes in your working tree, spanning several files, you can discard all of them at once (this also includes the staged changes): 
+	\begin{minted}{console}
 > git reset --hard
-\end{minted}
+	\end{minted}
+ 
+	\item This will restore all tracked files in the working tree to the most recently committed version (this commit is also known as the \texttt{HEAD} commit).
+	\end{itemize}
 
+\begin{block}{Task I [Mirko, Slavko]: Discarding several unwanted changes}
+	\begin{itemize}
+	\item Delete several files from the cloned example repository. Do not add or commit the changes.
+	\item Check the output of \texttt{git status}.
+	\item Discard all changes as shown above.
+	\end{itemize}
 \end{block}
 
 \end{frame}
@@ -265,76 +339,41 @@ Delete several files from the cloned example repository. Check the output of \te
 % -----------------------------------------------------------------------------
 
 
-\begin{frame}[fragile]
+\begin{frame}
 
 \frametitle{Going back in time}
 
-The point of using a version control system such as git is the ability to retrieve older versions of files in the project.
+	\begin{itemize}	
+	\item A big point in using a version control system such as git is the ability to retrieve older versions of files in the project. 
+	\item Note that writing good commit messages is important, because it will make identifying the right version much easier.
+	\item In the workflow we have described, the procedure for undoing mistakes is making additional commits which fix these mistakes.
+	\end{itemize}
+\end{frame}
 
-	\begin{block}{Task}
-	Delete a big chunk of text from \texttt{cpp/CMakeLists.txt}. Commit.
-	\end{block}
-	
-	Git allows you to retrieve another version of a file from an earlier commit.\footnote{writing good commit messages is important, because it will make identifying \\the right commit much easier} To identify the desired commit, use the \texttt{gitg} tool, or run \texttt{git log} (add \texttt{--oneline} for an abbreviated list of commits). Then, run:
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Going back in time - 2}
+
+	\begin{block}{Task J [Mirko, Slavko]}	
+	\begin{itemize}	
+	\item Delete a big chunk of text from \texttt{LICENSE.txt}.
+	\item Commit your destruction of the license file.
+	\item Git allows you to retrieve a version of a file from an earlier commit. To identify the desired commit, you can:
+	\begin{itemize}
+	\item use the \texttt{gitg} tool
+	\item run \texttt{git log} (add \texttt{--oneline} for an abbreviated list of commits). 
+	\end{itemize}
+	\item Perform the retrieval by running:
 	\begin{minted}{console}
 > git checkout <commit ID> <file>
 	\end{minted}
 	Git will place the checked out version of the file in the working tree, and will also stage the changes for you.
+	\item Don't forget to specify the file, as \texttt{checkout} with a commit ID, but without a file, means something else!
+	\end{itemize}	
 	
-	\begin{block}{Task}
-	Checkout the earlier, intact version of the file, and commit.
-	\end{block}	
-	
-\end{frame}
-
-% -----------------------------------------------------------------------------
-
-\begin{frame}[fragile]
-
-\frametitle{Reverting previous commits}
-
-Another benefit of splitting the work in different commits is the ability to undo them using \texttt{git revert}.
-
-	\begin{block}{Task}
-	Discard the earlier version of the file \texttt{cpp/CMakeLists.txt} that you have just checked out:
-	\begin{minted}{console}
-> git reset --hard
-	\end{minted}
-
-	Revert the offending commit:
-	\begin{minted}{console}
-> git revert <commit ID>
-	\end{minted}
-
-Reverting generates an \textit{inverse commit}, which has the exactly opposite set of changes.
 	\end{block}
-
-\end{frame}
-
-% -----------------------------------------------------------------------------
-
-\begin{frame}[fragile]
-
-\frametitle{Amending the last commit}
-
-In the special case when you want to add aditional changes to the \textit{last commit} that you have made, \textbf{and if you have not yet pushed that commit}:
-
-	\begin{enumerate}
-	\item Stage the additional changes using \texttt{git add}
-	\item Inspect the changes, as previously described
-	\item Run \texttt{git commit --amend}
-	\end{enumerate}
-
-In case you only wish to amend the commit description, just run \texttt{git commit --amend}, without staging any changes.
-
-	\begin{block}{Task}
-	Amend the description of the revert commit that you have just made:
-	\begin{minted}{text}
-Undo the destructive changes that the cat has commited by
-walking on the keyboard.
-	\end{minted}
-\end{block}
-
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -342,19 +381,23 @@ walking on the keyboard.
 \begin{frame}[fragile]
 	\frametitle{Pushing the changes to the remote repository}
 	
-	\begin{block}{Local vs. remote changes}
-	\texttt{commit} only saves changes \alert{locally}! The command \texttt{git push} is used to upload the commits you have made to a branch in a remote repository (also known as just \textit{remote}). In this case, the \texttt{master} branch on the \texttt{origin} remote:
+	\begin{itemize}
+	\item \texttt{commit} only saves changes \alert{locally}!
+	\item The command \texttt{git push} is used to upload the commits you have made to a branch in a remote repository (also known as just \textit{remote}). In this case, the \texttt{master} branch on the \texttt{origin} remote:
 	
 	\begin{minted}{console}
 > git push origin master
 	\end{minted}
+	\begin{itemize}
+	\item Note that you can simply call \texttt{git push} if you have set up your local branch to be a tracking branch.
+	\item This will be explained later; in most cases, git will have already automatically configured this for you.
+	\end{itemize}
+	\end{itemize}
+
+	\begin{block}{Task K [Mirko, Slavko]}
+	Try pushing the commits you have made to Mirko's repository.
 	\end{block}
 
-Note that you can simply call \texttt{git push} if you have set up your local branch to be a tracking branch (which will be explained later; in most cases, git will already have automatically configured this for you).
-
-	\begin{block}{Collaboration issues}
-What happens when somebody else pushed changes to the remote repository before us? In this case, git refuses to push. We must synchronize our local repository first!
-	\end{block}	
 	
 \end{frame}
 
@@ -362,13 +405,14 @@ What happens when somebody else pushed changes to the remote repository before u
 
 
 \begin{frame}[fragile]
-	\frametitle{Dealing with conflicts: fetching changes}
+	\frametitle{Dealing with conflicts}
 
-	\begin{block}{Task}
-	Both teammates have changed the same file. The person whose push failed has to resolve the conflict.	
-	\end{block}
+	\begin{block}{Collaboration issues}
+What happens when somebody else pushed changes to the remote repository before us? In this case, git refuses to push. We must synchronize our local repository first!
+	\end{block}	
+
 	
-	Getting changes is a two-step process:
+	Synchronizing the remote changes is a two-step process:
 	\begin{enumerate}
 		\item \texttt{fetch} the changes from the remote repository
 		\item \texttt{merge} the changes into your local branch
@@ -378,6 +422,7 @@ What happens when somebody else pushed changes to the remote repository before u
 > git fetch
 > git status
 > git diff master origin/master
+> git merge origin/master
 	\end{minted}
 	
 	\begin{block}{Understanding \texttt{diff}}
@@ -390,16 +435,18 @@ What happens when somebody else pushed changes to the remote repository before u
 
 \begin{frame}[fragile]
 	\frametitle{Dealing with conflicts: merging}
-	
-	When you call \texttt{merge}, git adds a special merge commit to your local repository, which has two parent commits: your local previous head commit, and the other side's commit (in this case, the \textit{other side} is the same branch in the remote repository).
-	\begin{minted}{console}
-> git merge origin/master
-	\end{minted}
-	
+	\begin{itemize}
+	\item When you call \texttt{merge}, git adds a special commit known as a \textit{merge commit} to your local branch
+	\item The merge commit has two parent commits: your local previous head commit, and the other side's commit (in this case, the \textit{other side} is the same branch in the remote repository).
+	\end{itemize}
 	\begin{block}{\texttt{fetch}+\texttt{merge}=\texttt{pull}?}
-	\texttt{pull} will do \texttt{fetch} and \texttt{merge} in a single step. However, if \texttt{origin} has changed, you might get yourself into trouble.\footnote{A really nice article advocating the use of \texttt{fetch}+\texttt{merge} can be found on \href{http://longair.net/blog/2009/04/16/git-fetch-and-merge/}{Mark's Blog}} 
+	\begin{itemize}	
+	\small
+	\item \texttt{pull} will do \texttt{fetch} and \texttt{merge} in a single step
+	\item If the remote version has changed, and you have made local commits before pulling the remote changes, you might get yourself into trouble.\footnote{A really nice article advocating the use of \texttt{fetch}+\texttt{merge} can be found on \href{http://longair.net/blog/2009/04/16/git-fetch-and-merge/}{Mark's Blog}} 
+	\item When you are getting back to work on a branch that you share with someone else, pull the remote changes before making your own commits! This helps avoid unnecesary merge commits by fast-forwarding.
+	\end{itemize}
 	\end{block}
-	
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -433,6 +480,88 @@ Code from the other branch ("remote" in git gui)
 
 % -----------------------------------------------------------------------------
 
+\begin{frame}[fragile]
+	\frametitle{Dealing with conflicts: merging}
+
+	
+	\begin{block}{Task L [\textless the loser\textgreater]}
+	\begin{itemize}
+	\item Synchronize the remote changes.
+	\item Resolve the conflict (if any).
+	\item Push your changes.
+	\end{itemize}
+	\end{block}
+	
+	\begin{block}{Task M [\textless the winner\textgreater]}
+	\begin{itemize}
+
+	\item Synchronize the new remote changes that \textless the loser\textgreater has now managed to push.
+
+	\end{itemize}
+	\end{block}
+	
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------------
+
+
+
+\begin{frame}[fragile]
+
+\frametitle{Reverting previous commits}
+
+	\begin{itemize}
+	\item Another benefit of splitting the work in different commits is the ability to undo them using \texttt{git revert}.
+	\item To revert the offending commit:
+	\begin{minted}{console}
+> git revert <commit ID>
+	\end{minted}
+	\item Reverting generates a \textit{revert commit}, which has the exactly opposite (inverse) set of changes.
+	\end{itemize}
+
+	\begin{block}{Task N [Slavko]: Slavko gets his revenge}
+	\begin{itemize}
+	\item Revert Mirko's annoying commit.
+
+	\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Amending the last commit}
+
+In the special case when you want to add aditional changes to the \textit{last commit} that you have made, \textbf{and if you have not yet pushed that commit}:
+
+	\begin{enumerate}
+	\item Stage the additional changes using \texttt{git add}
+	\item Inspect the changes, as previously described
+	\item Run \texttt{git commit --amend}
+	\begin{itemize}
+	\item In case you only wish to amend the commit description, just run \texttt{git commit --amend}, without staging any changes.
+	\end{itemize}
+	\end{enumerate}
+
+	\begin{block}{Task O [Slavko]}
+	Amend the description of the revert commit that you have just made: \texttt{Revert Mirko's rudeness}. Push the revert commit.
+
+\end{block}
+
+	\begin{block}{Task P [Mirko]}
+	Pull Slavko's changes.	
+	\end{block}
+
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+
 \begin{frame}
 
 \frametitle{Visualizing your repository}
@@ -442,7 +571,7 @@ Code from the other branch ("remote" in git gui)
 	\item GitHub provides similar functionality with the Graphs $\rightarrow$ Network menu.
 \end{itemize}
 
-\begin{block}{Task}
+\begin{block}{Task Q [Mirko, Slavko]}
 	Visualize your repository with \texttt{gitg} and on GitHub. Notice how the history is not linear. 
 \end{block}
 
