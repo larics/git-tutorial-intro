@@ -180,5 +180,5 @@ TSWLatexianTemp*
 *~[0-9]*
 
 # Output files
-larics-git-tutorial-intro*.pdf
+/*.pdf
 
