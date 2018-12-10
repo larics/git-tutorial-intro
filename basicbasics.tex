@@ -70,7 +70,16 @@ From the readme:
 \end{block}
 
 \begin{block}{Commit}
-	A basic unit of work in a project. Contains the set of changes, a textual description of what these changes do, a reference to the previous state (the \textit{parent commit}), and the author name and date.\\ \smallskip Finally, the commit contains an alphanumeric identifier (SHA-1 hash), generated from the above information, which is used to uniquely identify the commit. \\For example: \textcolor{Maroon}{\texttt{bdfa760c07d8f621ff603a2dc5d6de810cd62e88}}
+	A basic unit of work in a project. Contains a \textbf{snapshot} of the complete project, a reference to a previous snapshot (the \textit{parent commit}), the commit message -- a textual description of the changes in the commit (with respect to the parent commit), the commit author name, and the commit date.
+\end{block}	
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Commit ID (SHA)}
+\begin{block}{Commit ID}
+
+	\smallskip Every commit is marked with an alphanumeric identifier (SHA-1 hash) generated from the above information, which is used to uniquely identify the commit. \\For example: \textcolor{Maroon}{\texttt{bdfa760c07d8f621ff603a2dc5d6de810cd62e88}}
 \smallskip
 
 You can also use a prefix of the identifier to refer to this commit, usually 5 or 7 characters long, e.g. \textcolor{Maroon}{\texttt{bdfa760}}.
@@ -84,11 +93,13 @@ You can also use a prefix of the identifier to refer to this commit, usually 5 o
 \frametitle{Basic terms: branch, master and head}
 
 \begin{block}{Branch, master and head}
-A \alert{branch} is simply a pointer to a commit. \alert{Master} is the name of the default branch. \alert{Head} is a pointer to the last commit in the currently active (checked out) branch.
+A \alert{branch} is simply a pointer to a commit. \alert{Master} is usually the name of the main branch (but does not have to be). \alert{HEAD} is a special pointer to the currently checked out commit. \\
+\smallskip
+The commits with their parent-child relationships form a directed acyclic graph (DAG).
 \end{block}
 
 \begin{figure}
-\includegraphics[scale=0.3]{branches}
+\includegraphics[scale=0.26]{branches}
 \end{figure}
 
 \end{frame}
@@ -148,7 +159,7 @@ Check your mail, or the list of notifications on Github. Accept the collaboratio
 \begin{block}{Cloning}
 Cloning creates a local copy of the repository, which includes all the commits in the repository -- the whole history.
 \begin{minted}{console}
-> git clone git@github.com:<you>/git-tutorial-code.git
+> git clone git@github.com:<mirko>/git-tutorial-code.git
 \end{minted}
 \end{block}
 
@@ -156,6 +167,9 @@ Cloning creates a local copy of the repository, which includes all the commits i
 Clone Mirko's repository onto your computer.
 \end{block}
 
+\begin{itemize}
+    \item NB -- if you committed something, it is in your local repo, (almost) permanently. Do not make it a habit to delete your local repositories -- if you "lose" a commit, it can be recovered (by its ID), even if you have deleted the branch!
+\end{itemize}
 	
 \end{frame}
 
@@ -175,7 +189,7 @@ What is contained in the repository directory?
 	
 \begin{itemize}
 	\item The \textit{working tree} -- current version of files ("checked out")
-	\item The hidden \texttt{.git} folder which contains repository metadata \\ (all the commits, and the internal structures for storing them)
+	\item The hidden \texttt{.git} folder which contains repository metadata \\ (all the commits)
 	\item The \texttt{git status} command provides an overview of what is going on in the git repository.
 \end{itemize}
 \begin{minted}{console}
@@ -339,12 +353,12 @@ Developed without any help from that guy Slavko!
 > git reset --hard
 	\end{minted}
  
-	\item This will restore all tracked files in the working tree to the most recently committed version (this commit is also known as the \texttt{HEAD} commit).
+	\item This will restore all tracked files in the working tree to the most recently committed version (i.e. the \texttt{HEAD} commit).
 	\end{itemize}
 
 \begin{block}{Task I [Mirko, Slavko]: Discarding several unwanted changes}
 	\begin{itemize}
-	\item Delete several files from the cloned example repository. Do not add or commit the changes.
+	\item Delete several files from the cloned example repository. Do not commit the changes.
 	\item Check the output of \texttt{git status}.
 	\item Discard all changes as shown above.
 	\end{itemize}
