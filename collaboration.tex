@@ -1,0 +1,231 @@
+\section{Collaborating with others}
+
+% -----------------------------------------------------------------------------
+
+
+\begin{frame}[fragile]
+	\frametitle{Getting changes from the remote repository}
+	
+	Getting remote changes is a two-step process:
+	\begin{enumerate}
+		\item \texttt{fetch} the changes from the remote repository
+	\begin{minted}{console}
+> git fetch
+> git status
+> git diff <your branch> origin/<other branch>
+	\end{minted}
+		\item \texttt{merge} the changes into your local branch
+	\begin{minted}{console}
+> git merge origin/<branch>
+	\end{minted}
+	\end{enumerate}
+	
+	\begin{block}{Understanding \texttt{diff}}
+	\texttt{git diff a b} shows changes that need to be applied to \texttt{a} to make it the same as \texttt{b}. \texttt{a} and \texttt{b} are references to any two commits.
+	\end{block}
+	
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+	\frametitle{Syncing your code: merging}
+	\begin{itemize}
+	\item When you call \texttt{merge}, git adds a special commit known as a \textit{merge commit} to your local branch
+	\item The merge commit has two parent commits: your local previous head commit, and the other side's commit.
+	\end{itemize}
+	\begin{block}{\texttt{fetch}+\texttt{merge}=\texttt{pull}?}
+	\begin{itemize}	
+	\small
+	\item \texttt{pull} will do \texttt{fetch} and \texttt{merge} in a single step
+	\item If the remote version has changed, and you have made local commits before pulling the remote changes, you might get yourself into trouble.\footnote{A really nice article advocating the use of \texttt{fetch}+\texttt{merge} can be found on \href{http://longair.net/blog/2009/04/16/git-fetch-and-merge/}{Mark's Blog}} 
+	\item When you are getting back to work on a branch that you share with someone else, pull the remote changes before making your own commits! This helps avoid unnecesary merge commits by fast-forwarding.
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{Resolving conflicts}
+	
+	After merging, some files might end up in a conflicted state:
+	\begin{minted}{console}
+> git merge origin/<branch>
+> git status
+> git gui
+	\end{minted}	
+	
+	Conflict markers inside the file:
+	\begin{minted}{diff}
+<<<<<<< HEAD
+Code from the checked out branch ("local" in git gui) 
+=======
+Code from the other branch ("remote" in git gui)
+>>>>>>> origin/<branch name>
+	\end{minted}
+
+	To resolve the conflict, manually edit the file, mark resolution with \texttt{git add}, commit and push:
+	\begin{minted}{console}
+> git add <file name>
+> git commit -m "<commit message>"
+> git push origin master
+	\end{minted}
+	
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+	\frametitle{Dealing with conflicts: merging}
+
+	
+	\begin{block}{Task L [Luke]}
+	\begin{itemize}
+	\item Synchronize the remote changes.
+	\item Resolve the conflicts (if any).
+	\item Push your changes.
+	\end{itemize}
+	\end{block}
+	
+	\begin{block}{Task M [Yoda]}
+	\begin{itemize}
+
+	\item Fetch Luke's changes.
+	\item Merge Luke's changes into your branch.
+	\item Use \texttt{gitg} to examine what happened.
+
+	\end{itemize}
+	\end{block}
+	
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Visualizing merges}
+
+\begin{multicols}{2}
+	\begin{figure}
+		\includegraphics[scale=0.5]{3-way-merge-before}
+	\end{figure}
+	\begin{figure}
+		\includegraphics[scale=0.5]{3-way-merge-after}
+	\end{figure}
+\end{multicols}
+
+	\begin{block}{Task S [Yoda]: Merge the bugfix}
+	Merge your bug fix to the \texttt{master} branch and then push the \texttt{master} branch. Have your colleague pull the changes before they continue working.
+	\end{block}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Cleaning up local branches}
+
+Branches are a powerful and useful tool. However, to be used effectively, we must maintain them regularly. Generally, there are two types of branches
+\begin{itemize}
+	\item Short-lived branches (for bugfixes and features)
+	\item Long-lived branches
+\end{itemize}
+
+After merging a short-lived branch, perform cleanup by deleting it:
+\begin{minted}{console}
+> git branch -d <branch name>
+\end{minted}
+
+To delete an unmerged branch, you have to use the \texttt{-D} option, but be careful with this option, as the commits it was pointing to will become difficult to reach.
+
+\end{frame}
+
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Cleaning up remote branches}
+
+\begin{block}{Deleting remote branches}
+	\begin{itemize}
+	\item Can be done from the Github interface;
+	\\ run \texttt{git fetch --prune} afterwards to clean them up in your local copy of the remote repository
+	\item To delete a remote branch using the command-line interface, run \texttt{git push --delete <remote> <branch\_name>}
+	\end{itemize}
+\end{block}	
+
+\begin{block}{Task T [Yoda, Luke]: Clean up your branches}
+	Delete both the local and remote branches.
+\end{block}	
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+	
+\frametitle{Issues and pull (merge) requests}
+
+\emph{Pull requests} are an efficient and transparent code review mechanism. GitLab calls them \emph{Merge requests}.
+
+\begin{block}{Task [Yoda]: Issue}
+Create an issue through the GitHub WEB UI.
+\end{block}	
+
+\begin{block}{Task [Luke]: Merge request}
+Implement the requested fix in a new branch. Commit, and do not forget to \emph{reference the issue} in the commit message. Create a Merge request.
+\end{block}	
+
+\begin{block}{Task [Yoda, Luke]: Code review}
+Perform code review, merge the MR and delete the branch.
+\end{block}	
+
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+%\begin{frame}[fragile]
+%	
+%\frametitle{Working with multiple remotes}
+%	
+%\begin{block}{Why would I need multiple remotes?}
+%	\begin{itemize}
+%	\item We can get code changes from any repository, not just our remote repository (which is automatically set up as a remote named \texttt{origin} when cloning)
+%	\item A typical example is getting changes from the \textit{upstream} repository, i.e., the repository that we forked.
+%	\end{itemize}
+%\end{block}	
+%
+%Listing and adding remotes:
+%\begin{minted}{console}
+%> git remote add <remote_name> git@<hostname>:<path to repo>	
+%> git remote -v	
+%\end{minted}
+%	
+%We can now work with the new remote in the same way as with \texttt{origin} (except we can't push into it!), e.g.:
+%\begin{minted}{console}
+%> git fetch <remote_name>
+%> git merge <remote_name>/<branch>
+%\end{minted}
+%	
+%\end{frame}
+
+% -----------------------------------------------------------------------------
+
+%\begin{frame}
+%
+%\frametitle{Merging upstream changes}
+%
+%\begin{block}{Task: Merge upstream changes}
+%	\begin{itemize}
+%	\item Set up a remote called \texttt{upstream} pointing to \href{https://github.com/larics/git-tutorial-code.git}{the original repository you forked}
+%	\item \texttt{fetch} the \texttt{upstream} repository and compare its \texttt{master} branch with your \texttt{master} branch.
+%	\item Optional: for experimenting how the upstream changes will play with your changes, create a new branch.
+%	\item Merge the upstream \texttt{master} branch into your \texttt{master} branch (or first into your experimental branch, and then merge your experimental branch into your \texttt{master}).
+%	\end{itemize}
+%\end{block}
+%
+%\end{frame}
+
+% -----------------------------------------------------------------------------
