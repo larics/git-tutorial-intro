@@ -143,12 +143,12 @@ To begin working on a project using Github, you have to create a repository. The
 
 \frametitle{Adding a collaborator}
 
-\begin{block}{Task A [Yoda]: Repository owner}
+\begin{block}{Task A [Mirko]: Repository owner}
 
-	Add Luke as a collaborator to your repository through the Web UI with \texttt{write} access.
+	Add Slavko as a collaborator to your repository through the Web UI with \texttt{write} access.
 \end{block}
 
-\begin{block}{Task B [Luke]: Accept the collaboration invitation}
+\begin{block}{Task B [Slavko]: Accept the collaboration invitation}
 Check your mail, or the list of notifications. Accept the collaboration invitation.
 \end{block}
 
@@ -163,15 +163,15 @@ Check your mail, or the list of notifications. Accept the collaboration invitati
 \begin{block}{Cloning}
 Cloning creates a local copy of the repository, which includes all the commits in the repository -- the whole history.
 \begin{minted}{console}
-> git clone git@github.com:<Yoda>/<repo>.git
+> git clone git@github.com:<Mirko>/<repo>.git
 > cd <path to repo>
 \end{minted}
 \end{block}
 
-\begin{block}{Task D [Luke]}
-Clone Yoda's repository onto your computer and \texttt{cd} into it.
+\begin{block}{Task D [Slavko]}
+Clone Mirko's repository onto your computer and \texttt{cd} into it.
 \begin{minted}{console}
-> git clone git@github.com:<Yoda>/<repo>.git
+> git clone git@github.com:<Mirko>/<repo>.git
 > cd <path to repo>
 \end{minted}
 \end{block}
@@ -193,7 +193,7 @@ Clone Yoda's repository onto your computer and \texttt{cd} into it.
 	\item GitHub provides similar functionality with the Graphs $\rightarrow$ Network menu.
 \end{itemize}
 
-\begin{block}{Task Q [Yoda, Luke]}
+\begin{block}{Task Q [Mirko, Slavko]}
 	Visualize your repository with \texttt{gitg} and on GitHub. Notice how the history is not linear. 
 \end{block}
 
@@ -239,7 +239,7 @@ What is contained in the repository directory?
 \begin{frame}[fragile]
 	\frametitle{Your first branch}
 	
-	\begin{block}{Task E [Yoda, Luke]}
+	\begin{block}{Task E [Mirko, Slavko]}
 	Create a branch, off of the \texttt{main} branch:
 
 	\begin{minted}{console}
@@ -280,7 +280,7 @@ What is contained in the repository directory?
 \begin{frame}[fragile]
 	\frametitle{Your first commit}
 	
-	\begin{block}{Task E [Yoda, Luke]}
+	\begin{block}{Task E [Mirko, Slavko]}
 	Open \texttt{README.md} and change some lines, then save the file:
 
 Run the following, and observe what is happening.
@@ -338,7 +338,7 @@ Run the following, and observe what is happening.
 
 \frametitle{Managing staged changes}
 
-	\begin{block}{Task F [Yoda, Luke]}
+	\begin{block}{Task F [Mirko, Slavko]}
 	Make some more changes to some file(s) in your working tree.
 	\end{block}
 	\begin{itemize}	
@@ -362,7 +362,7 @@ Run the following, and observe what is happening.
 \begin{frame}[fragile]
 	\frametitle{Discarding unstaged changes}
 	
-	\begin{block}{Task H [Yoda, Luke]}
+	\begin{block}{Task H [Mirko, Slavko]}
 	\begin{itemize}
 	\item Delete a big chunk of text from an important file. Do not add or commit.
 	
@@ -393,7 +393,7 @@ Run the following, and observe what is happening.
 %	\item This will restore all tracked files in the working tree to the most recently committed version (i.e. the \texttt{HEAD} commit).
 %	\end{itemize}
 %
-%\begin{block}{Task I [Yoda, Luke]: Discarding several unwanted changes}
+%\begin{block}{Task I [Mirko, Slavko]: Discarding several unwanted changes}
 %	\begin{itemize}
 %	\item Delete several files from the cloned example repository. Do not commit the changes.
 %	\item Check the output of \texttt{git status}.
@@ -423,7 +423,7 @@ Run the following, and observe what is happening.
 
 \frametitle{Going back in time 2/3}
 
-\begin{block}{Task I: Checking out an earlier commit [Yoda, Luke]}
+\begin{block}{Task I: Checking out an earlier commit [Mirko, Slavko]}
 	\begin{itemize}
 	\item Identify an interesting commit in your history by either:
 	\begin{itemize}
@@ -453,7 +453,7 @@ Run the following, and observe what is happening.
 
 Sometimes, you want to retrieve a previously committed version of a specific file.
 
-	\begin{block}{Task J [Yoda, Luke]}	
+	\begin{block}{Task J [Mirko, Slavko]}	
 	\begin{itemize}	
 	\item Identify a specific file version in your commit history.
 	\item Perform the retrieval by running:
@@ -486,8 +486,8 @@ Sometimes, you want to retrieve a previously committed version of a specific fil
 	\end{minted}
 	\end{itemize}
 
-	\begin{block}{Task K [Yoda, Luke]}
-	Push the commits you have made to Yoda's repository.
+	\begin{block}{Task K [Mirko, Slavko]}
+	Push the commits you have made to Mirko's repository.
 	\end{block}
 
 \end{frame}
@@ -543,9 +543,9 @@ Sometimes, you want to retrieve a previously committed version of a specific fil
 %	\item Reverting generates a \textit{revert commit}, which has the exactly opposite (inverse) set of changes.
 %	\end{itemize}
 %
-%	\begin{block}{Task N [Luke]: Luke gets his revenge}
+%	\begin{block}{Task N [Slavko]: Slavko gets his revenge}
 %	\begin{itemize}
-%	\item Revert Yoda's annoying commit.
+%	\item Revert Mirko's annoying commit.
 %
 %	\end{itemize}
 %	\end{block}
@@ -569,13 +569,13 @@ Sometimes, you want to retrieve a previously committed version of a specific fil
 %	\end{itemize}
 %	\end{enumerate}
 %
-%	\begin{block}{Task O [Luke]}
-%	Amend the description of the revert commit that you have just made: \texttt{Revert Yoda's rudeness}. Push the revert commit.
+%	\begin{block}{Task O [Slavko]}
+%	Amend the description of the revert commit that you have just made: \texttt{Revert Mirko's rudeness}. Push the revert commit.
 %
 %\end{block}
 %
-%	\begin{block}{Task P [Yoda]}
-%	Pull Luke's changes.	
+%	\begin{block}{Task P [Mirko]}
+%	Pull Slavko's changes.	
 %	\end{block}
 %
 %
