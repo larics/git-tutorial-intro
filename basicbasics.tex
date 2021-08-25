@@ -90,9 +90,9 @@ You can also use a prefix of the identifier to refer to this commit, usually 5 o
 
 \begin{frame}
 
-\frametitle{Basic terms: branch, master and head}
+\frametitle{Basic terms: branch, main and head}
 
-\begin{block}{Branch, master and head}
+\begin{block}{Branch, main and head}
 A \alert{branch} is simply a pointer to a commit. \alert{Main} is usually the name of the main branch (but does not have to be). \alert{HEAD} is a special pointer to the currently checked out commit. \\
 \smallskip
 The commits with their parent-child relationships form a directed acyclic graph (DAG).
@@ -112,7 +112,6 @@ The commits with their parent-child relationships form a directed acyclic graph 
 
 To begin working on a project using Github, you have to create a repository. There are three ways to do this:
 
-
 \begin{itemize}
 	\item Create an empty repository
 	\begin{itemize}
@@ -128,7 +127,7 @@ To begin working on a project using Github, you have to create a repository. The
 	\end{itemize}
 	
 	\medskip
-	\item Join an existing repository
+	\item \alert{Join an existing repository}
 	\begin{itemize}
 	\item The owner must add you to the repository
 	\item The most convenient collaboration mode for small and medium sized teams
@@ -141,14 +140,17 @@ To begin working on a project using Github, you have to create a repository. The
 
 \begin{frame}[fragile]
 
-\frametitle{Adding a collaborator}
+\frametitle{Forking a repo and adding a collaborator}
 
-\begin{block}{Task A [Mirko]: Repository owner}
-
-	Add Slavko as a collaborator to your repository through the Web UI with \texttt{write} access.
+\begin{block}{Task A [Mirko]: Fork the example repository}
+	To fork a repository, simply click the \includegraphics[scale=0.35]{fork} \, icon in the top right corner of the repository webpage. For this tutorial, you will need to fork the \href{https://github.com/larics/git-tutorial-code.git}{larics/git-tutorial-code} repository.
 \end{block}
 
-\begin{block}{Task B [Slavko]: Accept the collaboration invitation}
+\begin{block}{Task B [Mirko]: Add a collaborator to your forked repository}
+In the GitHub user interface, on the \includegraphics[scale=0.35]{settings} \, tab of your forked repository, open the \texttt{Manage access} menu and add your partner as a collaborator with \texttt{Write} access.
+\end{block}
+
+\begin{block}{Task C [Slavko]: Accept the collaboration invitation}
 Check your mail, or the list of notifications. Accept the collaboration invitation.
 \end{block}
 
@@ -163,17 +165,13 @@ Check your mail, or the list of notifications. Accept the collaboration invitati
 \begin{block}{Cloning}
 Cloning creates a local copy of the repository, which includes all the commits in the repository -- the whole history.
 \begin{minted}{console}
-> git clone git@github.com:<Mirko>/<repo>.git
+> git clone git@github.com:<Mirko>/git-tutorial-code.git
 > cd <path to repo>
 \end{minted}
 \end{block}
 
-\begin{block}{Task D [Slavko]}
+\begin{block}{Task D [Mirko, Slavko]}
 Clone Mirko's repository onto your computer and \texttt{cd} into it.
-\begin{minted}{console}
-> git clone git@github.com:<Mirko>/<repo>.git
-> cd <path to repo>
-\end{minted}
 \end{block}
 
 \begin{itemize}
@@ -190,11 +188,11 @@ Clone Mirko's repository onto your computer and \texttt{cd} into it.
 
 \begin{itemize}
 	\item The \texttt{gitg} tool can visualize your repository
-	\item GitHub provides similar functionality with the Graphs $\rightarrow$ Network menu.
+	\item GitHub provides similar functionality with the Insights $\rightarrow$ Network menu.
 \end{itemize}
 
-\begin{block}{Task Q [Mirko, Slavko]}
-	Visualize your repository with \texttt{gitg} and on GitHub. Notice how the history is not linear. 
+\begin{block}{Task E [Mirko, Slavko]}
+	Visualize your repository with \texttt{gitg} and on GitHub.
 \end{block}
 
 \end{frame}
@@ -239,11 +237,10 @@ What is contained in the repository directory?
 \begin{frame}[fragile]
 	\frametitle{Your first branch}
 	
-	\begin{block}{Task E [Mirko, Slavko]}
+	\begin{block}{Task F [Mirko, Slavko]}
 	Create a branch, off of the \texttt{main} branch:
 
 	\begin{minted}{console}
-> git checkout master
 > git checkout -b <your name>-git-tutorial
 > git status
 > git branch -v
@@ -280,8 +277,8 @@ What is contained in the repository directory?
 \begin{frame}[fragile]
 	\frametitle{Your first commit}
 	
-	\begin{block}{Task E [Mirko, Slavko]}
-	Open \texttt{README.md} and change some lines, then save the file:
+	\begin{block}{Task G [Mirko, Slavko]}
+	Open \texttt{README.md} and change the maintainer name (make yourself the maintainer), then save the file:
 
 Run the following, and observe what is happening.
 
@@ -291,7 +288,7 @@ Run the following, and observe what is happening.
 > git add README.md
 > git status
 > git gui&
-> git commit -m "<details about the change>"
+> git commit -m "Change the maintainer"
 > git status
 > git log
 	\end{minted}
@@ -338,7 +335,7 @@ Run the following, and observe what is happening.
 
 \frametitle{Managing staged changes}
 
-	\begin{block}{Task F [Mirko, Slavko]}
+	\begin{block}{Task H [Mirko, Slavko]}
 	Make some more changes to some file(s) in your working tree.
 	\end{block}
 	\begin{itemize}	
@@ -362,22 +359,50 @@ Run the following, and observe what is happening.
 \begin{frame}[fragile]
 	\frametitle{Discarding unstaged changes}
 	
-	\begin{block}{Task H [Mirko, Slavko]}
+	\begin{block}{Task I [Mirko, Slavko]}
 	\begin{itemize}
-	\item Delete a big chunk of text from an important file. Do not add or commit.
+	\item Delete a big chunk of text from \texttt{README.md}. Do not add or commit.
 	
 	\item To find out what is going on, use \texttt{git status} and \texttt{git diff}.
 	\medskip	
     \item Discard the changes by retrieving ("checking out") the last commited version of the file (can also be a directory) using the \texttt{checkout} command:
 
 	\begin{minted}{console}
-> git checkout <file>
+> git checkout README.md
 	\end{minted}
 	
-	Note that the checked out version will contain the staged changes.
+	Note that the checked out version will contain the staged changes, i.e., \texttt{checkout} affect only the workspace, not the index.
 	\end{itemize}	
 	\end{block}
 \end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Making some more commits}
+
+\begin{block}{Task J [Mirko, Slavko]: Adding a license and \texttt{.gitignore}}
+	\begin{itemize}
+	\item Add a license to the project. Create a \texttt{LICENSE.txt} file and copy the \href{https://www.apache.org/licenses/LICENSE-2.0.txt}{Apache License 2.0 text} into this file.
+	\item Create a \texttt{.gitignore} file, with the following two lines:
+	\begin{minted}{text}
+cpp/build/
+*.pyc
+	\end{minted}
+	\item After modifying the files in the working tree, make two separate commits, one for the license, and the other for \texttt{.gitignore}.
+	\end{itemize}
+\end{block}
+
+\begin{block}{Task K [Mirko]}
+	Open \texttt{README.md}. Under the package description (the second line), add and commit something to annoy your colleague (but keep it friendly :)). For example:
+	\begin{minted}{text}
+Developed without any help from that guy Slavko!
+	\end{minted}
+\end{block}
+
+\end{frame}
+
 % -----------------------------------------------------------------------------
 
 %\begin{frame}[fragile]
@@ -423,7 +448,7 @@ Run the following, and observe what is happening.
 
 \frametitle{Going back in time 2/3}
 
-\begin{block}{Task I: Checking out an earlier commit [Mirko, Slavko]}
+\begin{block}{Task L: Checking out an earlier commit [Mirko, Slavko]}
 	\begin{itemize}
 	\item Identify an interesting commit in your history by either:
 	\begin{itemize}
@@ -453,7 +478,7 @@ Run the following, and observe what is happening.
 
 Sometimes, you want to retrieve a previously committed version of a specific file.
 
-	\begin{block}{Task J [Mirko, Slavko]}	
+	\begin{block}{Task M [Mirko, Slavko]}
 	\begin{itemize}	
 	\item Identify a specific file version in your commit history.
 	\item Perform the retrieval by running:
@@ -486,7 +511,7 @@ Sometimes, you want to retrieve a previously committed version of a specific fil
 	\end{minted}
 	\end{itemize}
 
-	\begin{block}{Task K [Mirko, Slavko]}
+	\begin{block}{Task N [Mirko, Slavko]}
 	Push the commits you have made to Mirko's repository.
 	\end{block}
 
