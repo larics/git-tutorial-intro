@@ -39,14 +39,39 @@
 	\small
 	\item \texttt{pull} will do \texttt{fetch} and \texttt{merge} in a single step
 	\item If the remote version has changed, and you have made local commits before pulling the remote changes, you might get yourself into trouble.\footnote{A really nice article advocating the use of \texttt{fetch}+\texttt{merge} can be found on \href{http://longair.net/blog/2009/04/16/git-fetch-and-merge/}{Mark's Blog}} 
-	\item When you are getting back to work on a branch that you share with someone else, pull the remote changes before making your own commits! This helps avoid unnecesary merge commits by fast-forwarding.
+	\item When you are getting back to work on a branch that you share with someone else, always \texttt{fetch}first to avoid unpleasant surprises.
 	\end{itemize}
 	\end{block}
 \end{frame}
 
 % -----------------------------------------------------------------------------
+
 \begin{frame}[fragile]
-	\frametitle{Resolving conflicts}
+	\frametitle{Merge conflicts}
+
+	\begin{block}{Task O [Slavko]}
+	\begin{itemize}
+	\item Merge the remote changes
+	\item Resolve the conflicts (if any)
+	\item Push your changes
+	\item (After Mirko completes his task) Fetch the new \texttt{master}
+	\end{itemize}
+	\end{block}
+
+	\begin{block}{Task P [Mirko]}
+	\begin{itemize}
+
+	\item Fetch Slavko's changes
+	\item Merge Slavko's changes into your branch
+	\item Use \texttt{gitg} to examine what happened
+	\end{itemize}
+	\end{block}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{Resolving merge conflicts}
 	
 	After merging, some files might end up in a conflicted state:
 	\begin{minted}{console}
@@ -68,36 +93,9 @@ Code from the other branch ("remote" in git gui)
 	\begin{minted}{console}
 > git add <file name>
 > git commit -m "<commit message>"
-> git push origin master
+> git push origin <branch>
 	\end{minted}
 	
-\end{frame}
-
-% -----------------------------------------------------------------------------
-
-\begin{frame}[fragile]
-	\frametitle{Dealing with conflicts: merging}
-
-	
-	\begin{block}{Task L [Slavko]}
-	\begin{itemize}
-	\item Synchronize the remote changes.
-	\item Resolve the conflicts (if any).
-	\item Push your changes.
-	\end{itemize}
-	\end{block}
-	
-	\begin{block}{Task M [Mirko]}
-	\begin{itemize}
-
-	\item Fetch Slavko's changes.
-	\item Merge Slavko's changes into your branch.
-	\item Use \texttt{gitg} to examine what happened.
-
-	\end{itemize}
-	\end{block}
-	
-
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -115,8 +113,30 @@ Code from the other branch ("remote" in git gui)
 	\end{figure}
 \end{multicols}
 
-	\begin{block}{Task S [Mirko]: Merge the bugfix}
-	Merge your bug fix to the \texttt{master} branch and then push the \texttt{master} branch. Have your colleague pull the changes before they continue working.
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Reverting previous commits}
+
+	\begin{itemize}
+	\item Another benefit of splitting the work in different commits is the ability to undo them using \texttt{git revert}.
+	\item To revert the offending commit:
+	\begin{minted}{console}
+> git revert <commit ID>
+	\end{minted}
+	\item Reverting generates a \textit{revert commit}, which has the exactly opposite (inverse) set of changes.
+	\end{itemize}
+
+	\begin{block}{Task Q [Mirko]: Mirko gets his revenge}
+	\begin{itemize}
+	\item Revert Slavko's annoying commit.
+	\item Use \texttt{gitg} to examine what happened
+	\item Merge your branch into the \texttt{master} branch
+    \item Push your \texttt{master} branch to \texttt{origin}
+	\end{itemize}
 	\end{block}
 \end{frame}
 
@@ -156,7 +176,7 @@ To delete an unmerged branch, you have to use the \texttt{-D} option, but be car
 	\end{itemize}
 \end{block}	
 
-\begin{block}{Task T [Mirko, Slavko]: Clean up your branches}
+\begin{block}{Task R [Mirko, Slavko]: Clean up your branches}
 	Delete both the local and remote branches.
 \end{block}	
 \end{frame}
@@ -165,19 +185,42 @@ To delete an unmerged branch, you have to use the \texttt{-D} option, but be car
 
 \begin{frame}[fragile]
 	
-\frametitle{Issues and pull (merge) requests}
+\frametitle{Issues and pull (merge) requests 1/2}
 
 \emph{Pull requests} are an efficient and transparent code review mechanism. GitLab calls them \emph{Merge requests}.
 
-\begin{block}{Task [Mirko]: Issue}
-Create an issue through the GitHub WEB UI.
-\end{block}	
+\begin{block}{Task S [Mirko]: Create an Issue}
+Examine the demo application and create an issue through the GitHub Web UI.
+\end{block}
 
-\begin{block}{Task [Slavko]: Merge request}
+\begin{block}{Task T [Slavko]: Merge request}
 Implement the requested fix in a new branch. Commit, and do not forget to \emph{reference the issue} in the commit message. Create a Merge request.
 \end{block}	
 
-\begin{block}{Task [Mirko, Slavko]: Code review}
+\begin{block}{Task U [Mirko, Slavko]: Code review}
+Perform code review, merge the MR and delete the branch.
+\end{block}
+
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
+\begin{frame}[fragile]
+
+\frametitle{Issues and pull (merge) requests 2/2}
+
+\emph{Pull requests} are an efficient and transparent code review mechanism. GitLab calls them \emph{Merge requests}.
+
+\begin{block}{Task V [Slavko]: Create an Issue}
+Ask for a \texttt{square} command to be implemented for the demo shell program.
+\end{block}
+
+\begin{block}{Task W [Mirko]: Merge request}
+Implement the requested feature in a new branch. Commit, and do not forget to \emph{reference the issue} in the commit message. Create a Merge request.
+\end{block}
+
+\begin{block}{Task X [Mirko, Slavko]: Code review}
 Perform code review, merge the MR and delete the branch.
 \end{block}	
 

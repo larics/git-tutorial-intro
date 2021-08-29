@@ -331,6 +331,28 @@ Run the following, and observe what is happening.
 
 % -----------------------------------------------------------------------------
 
+\begin{frame}[fragile]
+	\frametitle{Discarding unstaged changes}
+
+	\begin{block}{Task I [Mirko, Slavko]}
+	\begin{itemize}
+	\item Delete a big chunk of text from \texttt{README.md}. Do not add or commit.
+
+	\item To find out what is going on, use \texttt{git status} and \texttt{git diff}.
+	\medskip
+    \item Discard the changes by retrieving ("checking out") the last commited version of the file (can also be a directory) using the \texttt{checkout} command:
+
+	\begin{minted}{console}
+> git checkout README.md
+	\end{minted}
+
+	Note that the checked out version will contain the staged changes, i.e., \texttt{checkout} affect only the workspace, not the index.
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+
 \begin{frame}
 
 \frametitle{Managing staged changes}
@@ -353,29 +375,6 @@ Run the following, and observe what is happening.
 	
 \end{frame}
 
-
-% -----------------------------------------------------------------------------
-
-\begin{frame}[fragile]
-	\frametitle{Discarding unstaged changes}
-	
-	\begin{block}{Task I [Mirko, Slavko]}
-	\begin{itemize}
-	\item Delete a big chunk of text from \texttt{README.md}. Do not add or commit.
-	
-	\item To find out what is going on, use \texttt{git status} and \texttt{git diff}.
-	\medskip	
-    \item Discard the changes by retrieving ("checking out") the last commited version of the file (can also be a directory) using the \texttt{checkout} command:
-
-	\begin{minted}{console}
-> git checkout README.md
-	\end{minted}
-	
-	Note that the checked out version will contain the staged changes, i.e., \texttt{checkout} affect only the workspace, not the index.
-	\end{itemize}	
-	\end{block}
-\end{frame}
-
 % -----------------------------------------------------------------------------
 
 \begin{frame}[fragile]
@@ -394,10 +393,11 @@ cpp/build/
 	\end{itemize}
 \end{block}
 
-\begin{block}{Task K [Mirko]}
-	Open \texttt{README.md}. Under the package description (the second line), add and commit something to annoy your colleague (but keep it friendly :)). For example:
+\begin{block}{Task K [Slavko]}
+	Open \texttt{README.md}. Under the package description (the second line), add and commit something to annoy your colleague, for example:
 	\begin{minted}{text}
-Developed without any help from that guy Slavko!
+Mirko is churning out more spaghetti code
+than a trattoria in Napoli.
 	\end{minted}
 \end{block}
 
@@ -552,30 +552,6 @@ Sometimes, you want to retrieve a previously committed version of a specific fil
 	\end{itemize}
 	\end{block}
 \end{frame}
-
-% -----------------------------------------------------------------------------
-
-%\begin{frame}[fragile]
-%
-%\frametitle{Reverting previous commits}
-%
-%	\begin{itemize}
-%	\item Another benefit of splitting the work in different commits is the ability to undo them using \texttt{git revert}.
-%	\item To revert the offending commit:
-%	\begin{minted}{console}
-%> git revert <commit ID>
-%	\end{minted}
-%	\item Reverting generates a \textit{revert commit}, which has the exactly opposite (inverse) set of changes.
-%	\end{itemize}
-%
-%	\begin{block}{Task N [Slavko]: Slavko gets his revenge}
-%	\begin{itemize}
-%	\item Revert Mirko's annoying commit.
-%
-%	\end{itemize}
-%	\end{block}
-%	
-%\end{frame}
 
 % -----------------------------------------------------------------------------
 
