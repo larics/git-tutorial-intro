@@ -10,7 +10,7 @@ The main document (the one you should run `pdflatex` on) is `larics-git-tutorial
 
 The classes are interactive, i.e., students are expected to follow along on their own laptops.
 
-The material is appropriate for 2 classes of 2 hours (2x105 minutes). The first class should cover material up to the "Branches in git" slide. The second class should cover the material on working with branches.
+The material is appropriate for 2 classes of 2 hours (2x90 minutes). The first class should cover the "Keeping track of your code" section, i.e.,  material up to slide 30 "Getting changes from the remote repository" The second class should cover the material on "Collaborating with others".
 
 The students should arrive to class prepared, i.e., they should:
 
